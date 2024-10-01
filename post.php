@@ -68,5 +68,7 @@ foreach ($comments as $comment) {
     <button type="submit">Submit Comment</button>
 </form>
 
+<footer><a href="index.php">back to home</a></footer>
+
 </body>
 </html>
