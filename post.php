@@ -22,6 +22,11 @@ if (!$post) {
 
 // Memeriksa apakah pengguna adalah pemilik postingan
 $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_id'];
+
+// Ambil komentar dari database berdasarkan post_id
+$stmt = $pdo->prepare("SELECT content, created_by, created_at FROM comments WHERE post_id = :post_id ORDER BY created_at ASC");
+$stmt->execute(['post_id' => $post['id']]);
+$comments = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +42,7 @@ $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_
 <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
 <p>Posted by: <?php echo htmlspecialchars($post['user_id']); ?></p>
 
-<?php if (!$is_owner): ?> <!-- Menampilkan hanya jika bukan pemilik -->
+<?php if ($is_owner): ?> <!-- Menampilkan hanya jika pemilik -->
     <a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit Post</a>
     <form action="delete_post.php" method="POST" style="display:inline;">
         <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
@@ -49,13 +54,9 @@ $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_
 <h2>Comments</h2>
 
 <?php
-$query = $pdo->prepare("SELECT * FROM comments WHERE post_id = :post_id ORDER BY created_at DESC");
-$query->execute(['post_id' => $post_id]);
-$comments = $query->fetchAll();
-
 foreach ($comments as $comment) {
     echo "<div class='comment'>";
-    echo "<p><strong>" . htmlspecialchars($comment['user_id']) . "</strong>: " . nl2br(htmlspecialchars($comment['content'])) . "</p>";
+    echo "<p><strong>" . htmlspecialchars($comment['created_by']) . "</strong>: " . nl2br(htmlspecialchars($comment['content'])) . "</p>";
     echo "<p><em>Posted on " . $comment['created_at'] . "</em></p>";
     echo "</div>";
 }
@@ -72,3 +73,4 @@ foreach ($comments as $comment) {
 
 </body>
 </html>
+

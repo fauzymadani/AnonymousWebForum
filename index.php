@@ -1,16 +1,24 @@
 <?php include 'includes/header.php'; ?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post</title>
+</head>
+<body>
 <h1 class="boards" style="text-align: center;">Boards</h1>
 <h1>Welcome to Our Forum</h1>
-<p>Explore various topics and share your thoughts!, create a new post to explore our category.</p>
+<p>Explore various topics and share your thoughts!, create a new post to explore our category.
+<a href="rule.html">read our rule</a></p>
 
 <!-- Tautan untuk membuat postingan baru -->
 <button><a href="create_post.php">Create New Post</a></button>
-
+<article>
 <ul>
     <li><a href="category.php?category=current-news">Current News</a></li>
     <li><a href="category.php?category=video-games">Video Games</a></li>
     <!-- Tambahkan kategori lainnya sesuai screenshot -->
 </ul>
+</article>
 <?php include 'includes/footer.php'; ?>
 <p>donate bitcoin to this location: bc1q0cg7xarp8dxf24kerrmzws9zjk2qrh08exc7l7</p>
 <footer>help improves this page? <a href="pgpkeyadmin.asc" download>contact admin</a></footer>
@@ -72,3 +80,5 @@ veQHRAp8ar1gzhM1fdNjm+BSK0aB/zWOBuaSFKNGJSu+83xIqFj5PsyEhnmGJP/j
     </details>
 
 </footer>
+</body>
+</html>
