@@ -40,7 +40,8 @@ $comments = $stmt->fetchAll();
         /* General Styles */
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #1c1c1e;
+            color: #e5e5e5;
             margin: 0;
             padding: 20px;
             display: flex;
@@ -52,17 +53,19 @@ $comments = $stmt->fetchAll();
             max-width: 800px;
             margin: 20px auto;
             padding: 20px;
-            background-color: #fefefe;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #2e2e2e;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
         }
 
         /* Post styling */
         .post {
-            background-color: #e0f7fa;
+            background-color: #333;
             padding: 20px;
             border-radius: 8px;
             margin-bottom: 30px;
             position: relative;
+            border-left: 4px solid #3498db; /* Aksen biru */
         }
 
         .post-header {
@@ -70,26 +73,28 @@ $comments = $stmt->fetchAll();
             justify-content: space-between;
             align-items: center;
             margin-bottom: 10px;
+            position: relative;
         }
 
-        .post-header .post-user {
+        .post-user {
             font-size: 0.9rem;
             font-style: italic;
-            color: #555;
-        }
-
-        .post-header .post-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            text-align: center;
-            width: 100%;
+            color: #aaa;
             position: absolute;
             top: 0;
+            left: 0;
             transform: translateY(-50%);
         }
 
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+        }
+
         .post-content {
-            margin-top: 30px;
+            margin-top: 20px;
             font-size: 1.1rem;
         }
 
@@ -99,10 +104,11 @@ $comments = $stmt->fetchAll();
         }
 
         .comment {
-            background-color: #f1f1f1;
+            background-color: #444;
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
+            border-left: 4px solid #3498db; /* Aksen biru */
         }
 
         .comment p {
@@ -112,12 +118,12 @@ $comments = $stmt->fetchAll();
         .comment-user {
             font-weight: bold;
             font-size: 0.9rem;
-            color: #333;
+            color: #b0c4de;
         }
 
         .comment-timestamp {
             font-size: 0.8rem;
-            color: #777;
+            color: #888;
         }
 
         /* Add comment box styling */
@@ -125,6 +131,7 @@ $comments = $stmt->fetchAll();
             margin-top: 20px;
             padding: 15px;
             border-radius: 5px;
+            background-color: #2e2e2e;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
             display: flex;
             flex-direction: column;
@@ -135,17 +142,24 @@ $comments = $stmt->fetchAll();
             width: 100%;
             height: 80px;
             padding: 10px;
-            border: 1px solid #ddd;
+            border: 1px solid #555;
             border-radius: 5px;
             resize: none;
+            background-color: #444;
+            color: #fff;
         }
 
         .add-comment button {
             padding: 10px;
-            color: black;
+            background-color: #3498db; /* Aksen biru */
+            color: #fff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+        }
+
+        .add-comment button:hover {
+            background-color: #2980b9; /* Aksen biru saat hover */
         }
 
         /* Footer styling */
@@ -154,69 +168,81 @@ $comments = $stmt->fetchAll();
             text-align: center;
         }
 
+        footer a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 width: 100%;
             }
 
-            .post-header .post-title {
-                font-size: 1.2rem;
+            .post-title {
+                font-size: 1.4rem;
             }
         }
     </style>
 </head>
 
+<body>
 
-
-<div class="container">
-    <!-- Postingan -->
-    <div class="post">
-        <div class="post-header">
-            <p class="post-user"><?php echo htmlspecialchars($post['user_id']); ?> | <?php echo $post['created_at']; ?></p>
-            <h1 class="post-title"><?php echo htmlspecialchars($post['title']); ?></h1>
-        </div>
-        <div class="post-content">
-            <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-        </div>
-        
-        <!-- Tampilkan link edit dan hapus hanya untuk pemilik postingan -->
-        <?php if ($is_owner): ?>
-            <div class="post-actions">
-                <a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit Post</a>
-                <form action="delete_post.php" method="POST" style="display:inline;">
-                    <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                    <button type="submit" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
-                </form>
+    <div class="container">
+        <!-- Postingan -->
+        <div class="post">
+            <div class="post-header">
+                <p class="post-user"><?php echo htmlspecialchars($post['user_id']); ?> | <?php echo $post['created_at']; ?></p>
+                <h1 class="post-title"><?php echo htmlspecialchars($post['title']); ?></h1>
             </div>
-        <?php endif; ?>
-    </div>
-
-    <!-- Komentar -->
-    <div class="comment-section">
-        <h2>Comments</h2>
-
-        <?php foreach ($comments as $comment): ?>
-            <div class="comment">
-                <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
-                <p class="comment-user"><?php echo htmlspecialchars($comment['created_by']); ?></p>
-                <p class="comment-timestamp"><?php echo $comment['created_at']; ?></p>
+            <div class="post-content">
+                <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
             </div>
-        <?php endforeach; ?>
+
+            <!-- Tampilkan link edit dan hapus hanya untuk pemilik postingan -->
+            <?php if ($is_owner): ?>
+                <div class="post-actions">
+                    <a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit Post</a>
+                    <form action="delete_post.php" method="POST" style="display:inline;">
+                        <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
+                        <button type="submit" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
+                    </form>
+                </div>
+            <?php endif; ?>
+        </div>
+
+        <!-- Komentar -->
+        <div class="comment-section">
+            <h2>Comments</h2>
+
+            <?php foreach ($comments as $comment): ?>
+                <div class="comment">
+                    <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
+                    <p class="comment-user"><?php echo htmlspecialchars($comment['created_by']); ?></p>
+                    <p class="comment-timestamp"><?php echo $comment['created_at']; ?></p>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <!-- Form untuk menambahkan komentar -->
+        <div class="add-comment">
+            <form action="add_comment.php" method="POST">
+                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                <textarea name="content" placeholder="Add a comment..." required></textarea>
+                <button type="submit">Submit Comment</button>
+            </form>
+        </div>
     </div>
 
-    <!-- Form untuk menambahkan komentar -->
-    <div class="add-comment">
-        <form action="add_comment.php" method="POST">
-            <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-            <textarea name="content" placeholder="Add a comment..." required></textarea>
-            <button type="submit">Submit Comment</button>
-        </form>
-    </div>
-</div>
+    <footer><a href="index.php">Back to home</a></footer>
 
-<footer><button><a href="index.php">Back to home</a></button></footer>
+    <?php include 'footer.php'; ?>
 
 </body>
 
 </html>
+

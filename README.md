@@ -42,3 +42,6 @@ imagedestroy($image);
 
 ## license
 this repository is licensed under the GPL license. 
+
+## donate
+donate in bitcoin: `bc1q032apdhxqdn67rhaw48qs2mc84lqh4zyy3csh8`

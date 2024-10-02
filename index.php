@@ -131,7 +131,7 @@
             <?php include 'includes/footer.php'; ?>
             <p>donate bitcoin to this location: <a style="font-family: monospace;">bc1q0cg7xarp8dxf24kerrmzws9zjk2qrh08exc7l7</a></p>
             <footer><p>help improves this page? <a href="pgpkeyadmin.asc" download>contact admin</a></p></footer>
-            <footer><p>help improving this page by contacting and sending encrypted message to this public key: </p>
+            <footer><p>help improving this page by contacting <a href="#">okmnjijn@protonmail.com</a> and sending encrypted message to this public key: </p>
 
 
                 <details>-----BEGIN PGP PUBLIC KEY BLOCK----- <br>
@@ -212,6 +212,17 @@
                         <div class="description" align="left">
                             <h1><a href="communicate.php">how to Improve Communication Skills</a></h1>
                             <p>Develop better communication skills for personal and professional relationships. This blog covers various techniques for improving how you interact with others.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- blog 3 -->
+                <div class="blog-2">
+                    <div class="blog-container">
+                        <p><img src="./favicon/android-chrome-192x192.png" alt="Blog Image 2" class="image-left" style="width: 200px;"></p>
+                        <div class="description" align="left">
+                            <h1><a href="howtomakepost.php">How to make post in Anonymous Forum</a></h1>
+                            <p>if you're new in this Forum, you'll need to see this!!</p>
                         </div>
                     </div>
                 </div>
