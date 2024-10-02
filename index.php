@@ -100,6 +100,10 @@
             background-color: brown;
             border-radius: 15px;
         }
+
+        .blog-container {
+            border: 2px solid yellow;
+        }
     </style>
 </head>
 
@@ -109,7 +113,7 @@
             <h1 class="boards" style="text-align: center;">Boards</h1>
             <span align="center"><img align="center" src="./favicon/android-chrome-192x192.png" alt="image" style="width: 120px;"></span>
             <h1 align="center">Welcome to Our Forum</h1>
-            <p>Explore various topics and share your thoughts!, create a new post to explore our category.
+            <p>Explore various topics and share your thoughts!, create a new post to explore our category. this site is <strong>under development,</strong>
                 <a href="rule.html">read our rule</a>
             </p>
 
@@ -117,8 +121,10 @@
             <button><a href="create_post.php">Create New Post</a></button>
             <article>
                 <ul>
-                    <li><a href="category.php?category=current-news">Current News</a></li>
-                    <li><a href="category.php?category=video-games">Video Games</a></li>
+                    <li><a href="category.php?category=Entertainment">entertaiment</a></li>
+                    <li><a href="category.php?category=Education">education</a></li>
+                    <li><a href="category.php?category=Misc.">Misc</a></li>
+                    <li><a href="category.php?category=Around%20the%20world">Around the world</a></li>
                     <!-- Tambahkan kategori lainnya sesuai screenshot -->
                 </ul>
             </article>
@@ -128,7 +134,7 @@
             <footer><p>help improving this page by contacting and sending encrypted message to this public key: </p>
 
 
-                <details>-----BEGIN PGP PUBLIC KEY BLOCK-----
+                <details>-----BEGIN PGP PUBLIC KEY BLOCK----- <br>
 
                     mQINBGbuGycBEACdLiale6UEgrYdUxW60AtkZvkisz9wReeD+x5dm9K/ghFymAOd
                     GMri8NebblUiktw/Cwx29JXZ80lG2PBzkb2NNgXuRKqYP+X2Wahou2Z/4lDxL8tS
@@ -176,9 +182,9 @@
                     Y2eGTEDAetAOaM5gf7vJyPwPDwp3GfPRzvmZPAzCAhMgJnNL3LEfxnYe9K2mfzOS
                     bH/axlFQjBvYHRBpn59wmRPf1TEi/2Ww71/JcN8wVfL1Ww1eptutOM/zE8R/uVmN
                     9Z8EbpU8QVH3aQdU9NpyyEvoSImm582Xh4DZuM8LTGNzvYZzsB1EmVsqoZ0ho2XG
-                    veQHRAp8ar1gzhM1fdNjm+BSK0aB/zWOBuaSFKNGJSu+83xIqFj5PsyEhnmGJP/j
+                    veQHRAp8ar1gzhM1fdNjm+BSK0aB/zWOBuaSFKNGJSu+83xIqFj5PsyEhnmGJP/j<br>
                     8MGs
-                    =DYR6
+                    =DYR6<br>
                     -----END PGP PUBLIC KEY BLOCK-----
                 </details>
 
@@ -193,7 +199,7 @@
                     <div class="blog-container">
                         <p><img src="./favicon/howto.jpeg" alt="Blog Image 1" class="image-left"></p>
                         <div class="description" align="left">
-                            <h1>How to Get a Girlfriend</h1>
+                            <h1><a href="girl.php">How to Get a Girlfriend</a></h1>
                             <p>Learn effective ways to build meaningful relationships and find a girlfriend. This blog offers tips and guidance on how to navigate the dating world.</p>
                         </div>
                     </div>
@@ -204,7 +210,7 @@
                     <div class="blog-container">
                         <p><img src="./favicon/memedarkweb.jpeg" alt="Blog Image 2" class="image-left" style="width: 200px;"></p>
                         <div class="description" align="left">
-                            <h1>How to Improve Communication Skills</h1>
+                            <h1><a href="communicate.php">how to Improve Communication Skills</a></h1>
                             <p>Develop better communication skills for personal and professional relationships. This blog covers various techniques for improving how you interact with others.</p>
                         </div>
                     </div>

@@ -9,12 +9,18 @@ $category = $_GET['category'];
 $query = $pdo->prepare("SELECT * FROM posts WHERE category = :category");
 $query->execute(['category' => $category]);
 $posts = $query->fetchAll();
+
+$category = $_GET['category']; // Mendapatkan kategori dari URL
+$stmt = $pdo->prepare("SELECT * FROM posts WHERE category = :category");
+$stmt->execute(['category' => $category]);
+$posts = $stmt->fetchAll();
+
 ?>
 
 <h1><?php echo $category; ?> Posts</h1>
 
 <!-- Tautan untuk membuat postingan baru -->
-<a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a>
+<button><a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a></button>
 
 <!-- Menampilkan daftar postingan -->
 <ul>
