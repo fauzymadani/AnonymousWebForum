@@ -240,7 +240,7 @@ $comments = $stmt->fetchAll();
 
     <footer><a href="index.php">Back to home</a></footer>
 
-    <?php include 'footer.php'; ?>
+    <?php include 'includes/footer.php'; ?>
 
 </body>
 
