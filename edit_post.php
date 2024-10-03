@@ -1,24 +1,30 @@
 <?php
+session_start();
 include 'includes/header.php';
 include 'includes/db.php';
 
 $id = $_GET['id'];
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $title = $_POST['title'];
-    $content = $_POST['content'];
+// Ambil data postingan
+$query = $pdo->prepare("SELECT * FROM posts WHERE id = :id");
+$query->execute(['id' => $id]);
+$post = $query->fetch();
 
-    $stmt = $pdo->prepare("UPDATE posts SET title = :title, content = :content WHERE id = :id");
-    $stmt->execute(['title' => $title, 'content' => $content, 'id' => $id]);
-
-    header("Location: post.php?id=$id");
-} else {
-    $query = $pdo->prepare("SELECT * FROM posts WHERE id = :id");
-    $query->execute(['id' => $id]);
-    $post = $query->fetch();
+// Cek apakah post ada
+if (!$post) {
+    echo "Post not found!";
+    exit();
 }
 
-// Session timeout - Tambahkan ini di bagian atas
+// Cek apakah pengguna adalah pemilik postingan
+$is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_id'];
+
+// Cek waktu terakhir edit
+$created_at = strtotime($post['created_at']);
+$current_time = time();
+$time_limit = 600; // Batas waktu 10 menit (600 detik)
+
+// Session timeout
 if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
     session_unset(); // Hapus semua session
     session_destroy(); // Hancurkan session
@@ -27,21 +33,19 @@ if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 
 }
 $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 
-if ($is_owner) {
-    $created_at = strtotime($post['created_at']);
-    $current_time = time();
-    $time_limit = 600; // Batas waktu 1 jam (3600 detik)
+// Cek apakah post sudah lebih dari batas waktu
+if ($is_owner && (($current_time - $created_at) <= $time_limit)) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        $title = $_POST['title'];
+        $content = $_POST['content'];
 
-    if (($current_time - $created_at) > $time_limit) {
-        echo "You can no longer edit this post.";
-        exit;
+        $stmt = $pdo->prepare("UPDATE posts SET title = :title, content = :content WHERE id = :id");
+        $stmt->execute(['title' => $title, 'content' => $content, 'id' => $id]);
+
+        header("Location: post.php?id=$id");
+        exit();
     }
-} else {
-    echo "You do not have permission to edit this post.";
-    exit;
-}
-
-?>
+    ?>
 <!DOCTYPE html>
 <html>
 
@@ -156,17 +160,27 @@ if ($is_owner) {
 </head>
 
 <body>
-    <form method="POST">
+<form method="POST">
         <label>Title</label>
-        <input type="text" name="title" value="<?php echo $post['title']; ?>" required>
+        <input type="text" name="title" value="<?php echo htmlspecialchars($post['title']); ?>" required>
 
         <label>Content</label>
-        <textarea name="content" required><?php echo $post['content']; ?></textarea>
+        <textarea name="content" required><?php echo htmlspecialchars($post['content']); ?></textarea>
 
         <button type="submit">Update Post</button>
     </form>
+    <?php
+} else {
+    if (!$is_owner) {
+        echo "You do not have permission to edit this post.";
+    } else {
+        echo "You can no longer edit this post.";
+    }
+    exit;
+}
 
-    <?php include 'includes/footer.php'; ?>
+include 'includes/footer.php';
+?>
 </body>
 
 </html>
