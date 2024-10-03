@@ -45,3 +45,7 @@ this repository is licensed under the GPL license.
 
 ## donate
 donate in bitcoin: `bc1q032apdhxqdn67rhaw48qs2mc84lqh4zyy3csh8`
+
+## Repo Activity
+
+![Alt](https://repobeats.axiom.co/api/embed/1540d66aa3a3a326d80c92e7ebce71147da61913.svg "Repobeats analytics image")
