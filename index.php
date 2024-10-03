@@ -28,7 +28,7 @@ include 'includes/footer.php';
 <html>
 
 <head>
-    <title>Post</title>
+    <title>Anon Forum</title>
     <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
     <style>
         body {

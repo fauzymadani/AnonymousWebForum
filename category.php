@@ -24,33 +24,27 @@ $posts = $stmt->fetchAll();
     <style>
         body {
             background-color: #121212;
-            /* Dark background */
             color: #e0e0e0;
-            /* Text color */
             font-family: 'Courier New', Courier, monospace;
-            /* Monospace font for dark web style */
             margin: 0;
             padding: 20px;
         }
 
         .container {
             background-color: #1a1a1a;
-            /* Slightly lighter background for container */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            max-width: 800px;
+            max-width: 1000px;
             margin: 20px auto;
         }
 
         h1 {
             font-size: 2em;
-            text-align: center;
+            text-align: left;
             margin-bottom: 20px;
             color: #d4af37;
-            /* Gold color for category title */
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-            /* Text shadow for a more striking effect */
         }
 
         .create {
@@ -63,9 +57,8 @@ $posts = $stmt->fetchAll();
             cursor: pointer;
             margin-bottom: 20px;
             display: block;
-            margin-left: auto;
-            margin-right: auto;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: max-content;
         }
 
         button a {
@@ -77,83 +70,99 @@ $posts = $stmt->fetchAll();
             background-color: #555;
         }
 
-        .post-container {
-            background-color: #1f1f1f;
-            /* Slightly lighter background for post container */
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-            transition: background-color 0.3s;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
         }
 
-        .post-container:hover {
-            background-color: #2b2b2b;
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+        }
+
+        th {
+            background-color: #222;
+            color: #d4af37;
+        }
+
+        td {
+            background-color: #1f1f1f;
         }
 
         .post-title {
-            font-size: 1.5em;
-            margin-bottom: 10px;
             color: #c5c6c7;
-            /* Light gray for post title */
+            font-size: 1.2em;
         }
 
         .post-title a {
             text-decoration: none;
-            color: #c5c6c7;
-            transition: color 0.3s;
+            color: inherit;
         }
 
         .post-title a:hover {
             color: #d4af37;
-            /* Gold hover color for post title */
         }
 
         .post-meta {
-            font-size: 0.9em;
             color: #aaa;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 20px;
+            font-size: 0.9em;
         }
 
         .back {
-            position: relative;
-            left: 0;
             background-color: tomato;
             border: 1px solid red;
+            margin-bottom: 20px;
+        }
+
+        .back a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .last-post {
+            color: #77b7ff;
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <a href="index.php"><button class="back">back</button></a>
+        <a href="index.php"><button class="back">Back</button></a>
         <h1><?php echo $category; ?> Posts</h1>
 
-        <!-- Tautan untuk membuat postingan baru -->
         <button class="create"><a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a></button>
 
-        <!-- Menampilkan daftar postingan -->
-        <ul>
-            <?php foreach ($posts as $post): ?>
-                <li class="post-container">
-                    <div class="post-title">
-                        <a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
-                    </div>
-                    <div class="post-meta">
-                        Posted by: <?php echo $post['user_id']; ?> |
-                        <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
-                    </div>
-                </li>
-            <?php endforeach; ?>
-        </ul>
+        <table>
+            <thead>
+                <tr>
+                    <th>Topic</th>
+                    <th>Posts</th>
+                    <th>Last Post</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($posts as $post): ?>
+                    <tr>
+                        <td class="post-title">
+                            <a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+                            <div class="post-meta">
+                                Posted by: <?php echo $post['user_id']; ?> | 
+                                <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
+                            </div>
+                        </td>
+                        <td><?php echo rand(1, 10); // Placeholder for number of posts ?></td>
+                        <td>
+                            <div class="last-post">
+                                <?php echo date('F j, Y', strtotime($post['created_at'])); ?> 
+                                by <?php echo $post['user_id']; ?>
+                            </div>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
     </div>
 
     <?php include('./includes/footer.php'); ?>
