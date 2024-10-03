@@ -224,10 +224,10 @@ include 'includes/footer.php';
                 <!-- Blog 1 -->
                 <div class="blog-1">
                     <div class="blog-container">
-                        <p><img src="./favicon/howto.jpeg" alt="Blog Image 1" class="image-left"></p>
+                        <p><img src="./favicon/arche.jpeg" alt="Blog Image 1" class="image-left"></p>
                         <div class="description" align="left">
-                            <h1><a href="girl.php">How to Get a Girlfriend</a></h1>
-                            <p>Learn effective ways to build meaningful relationships and find a girlfriend. This blog offers tips and guidance on how to navigate the dating world.</p>
+                            <h1><a href="girl.php">Archetyp Dark Market</a></h1>
+                            <p>a history about the biggest drug market that still operate todays.</p>
                         </div>
                     </div>
                 </div>
@@ -235,10 +235,10 @@ include 'includes/footer.php';
                 <!-- Blog 2 -->
                 <div class="blog-2">
                     <div class="blog-container">
-                        <p><img src="./favicon/memedarkweb.jpeg" alt="Blog Image 2" class="image-left" style="width: 200px;"></p>
+                        <p><img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Silk_Road_Marketplace_Item_Screen.jpg/300px-Silk_Road_Marketplace_Item_Screen.jpg" alt="Blog Image 2" class="image-left" style="width: 200px;"></p>
                         <div class="description" align="left">
-                            <h1><a href="communicate.php">how to Improve Communication Skills</a></h1>
-                            <p>Develop better communication skills for personal and professional relationships. This blog covers various techniques for improving how you interact with others.</p>
+                            <h1><a href="communicate.php">how Silk road was the First and the largest modern dark market back in the days</a></h1>
+                            <p>Silk Road was an online black market and the first modern darknet market.[7]</p>
                         </div>
                     </div>
                 </div>

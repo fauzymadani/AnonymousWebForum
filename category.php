@@ -53,7 +53,7 @@ $posts = $stmt->fetchAll();
             /* Text shadow for a more striking effect */
         }
 
-        button {
+        .create {
             background-color: #333;
             color: #fff;
             padding: 10px 20px;
@@ -122,15 +122,23 @@ $posts = $stmt->fetchAll();
         li {
             margin-bottom: 20px;
         }
+
+        .back {
+            position: relative;
+            left: 0;
+            background-color: tomato;
+            border: 1px solid red;
+        }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <a href="index.php"><button class="back">back</button></a>
         <h1><?php echo $category; ?> Posts</h1>
 
         <!-- Tautan untuk membuat postingan baru -->
-        <button><a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a></button>
+        <button class="create"><a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a></button>
 
         <!-- Menampilkan daftar postingan -->
         <ul>

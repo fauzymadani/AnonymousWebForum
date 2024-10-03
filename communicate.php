@@ -1,15 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to get a girlfriend</title>
+    <title>Dark Market Archetype</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            /* Warna latar belakang gelap */
+            color: #f0f0f0;
+            /* Warna teks terang untuk kontras */
+            font-family: 'Courier New', Courier, monospace;
+            /* Font yang memberikan kesan hacker */
+            line-height: 1.6;
+            /* Jarak antar baris untuk keterbacaan */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #282828;
+            /* Latar belakang header */
+            padding: 10px;
+            display: flex;
+            /* Menggunakan flexbox untuk penataan */
+            justify-content: space-between;
+            /* Membuat jarak antara elemen */
+            align-items: center;
+            /* Memusatkan elemen secara vertikal */
+        }
+
+        nav {
+            display: flex;
+            /* Menggunakan flexbox untuk nav */
+        }
+
+        nav a {
+            color: #f0f0f0;
+            /* Warna teks link */
+            padding: 10px 15px;
+            /* Padding untuk link */
+            text-decoration: none;
+            /* Menghilangkan garis bawah */
+            transition: background-color 0.3s;
+            color: yellowgreen;
+        }
+
+        .forum-logo {
+            display: flex;
+            /* Menggunakan flexbox untuk logo dan nama forum */
+            align-items: center;
+            /* Memusatkan logo dan nama secara vertikal */
+        }
+
+        .forum-logo img {
+            height: 40px;
+            /* Tinggi gambar logo */
+            margin-right: 10px;
+            /* Jarak antara gambar dan teks */
+        }
+
+        h1 {
+            text-align: center;
+            /* Memusatkan judul */
+            margin: 20px 0;
+            /* Jarak atas dan bawah judul */
+        }
+
+        .image {
+            text-align: center;
+            /* Memusatkan gambar */
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .image img {
+            max-width: 100%;
+            /* Memastikan gambar responsif */
+            height: auto;
+            /* Memastikan gambar menjaga aspek rasio */
+            margin-top: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 5px black;
+        }
+
+        .logo {
+            border-radius: 50%;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        a {
+            color: #3498db;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <header><span><nav><button><a href="index.php">back to home</a></button></nav></span></header>
-    <h1>This site is under construction :)</h1>
+    <header>
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="category.php?category=Entertainment">entertaiment</a>
+            <a href="category.php?category=Misc.">misc</a>
+            <a href="category.php?category=Education">education</a>
+            <a href="category.php?category=Around%20the%20world">around the world</a>
+        </nav>
+        <div class="forum-logo">
+            <img src="./favicon/android-chrome-192x192.png" alt="Forum Logo" class="logo"> <!-- Ganti dengan path gambar logo Anda -->
+            <span>Anon Forum</span> <!-- Nama forum -->
+        </div>
+    </header>
+    <h1>Silk Road</h1>
+        
+    </a>
     <div class="image">
-    <img src="data:image/png;base64,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" alt="">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/4/42/Silk_Road_Marketplace_Item_Screen.jpg/300px-Silk_Road_Marketplace_Item_Screen.jpg" alt="">
+        <p>Silk Road was an online black market and the first modern darknet market.[7] It was launched in 2011 by its American founder Ross Ulbricht under the pseudonym "Dread Pirate Roberts." As part of the dark web,[8] Silk Road operated as a hidden service on the Tor network, allowing users to buy and sell products and services between each other anonymously. All transactions were conducted with bitcoin, a cryptocurrency which aided in protecting user identities. The website was known for its illegal drug marketplace, among other illegal and legal product listings. Between February 2011 and July 2013, the site facilitated sales amounting to 9,519,664 Bitcoins.[9]
+
+            In October 2013, the Federal Bureau of Investigation (FBI) shut down the Silk Road website and arrested Ulbricht.[9][3] Silk Road 2.0 came online the next month, run by other administrators of the former site,[10] but was shut down the following year as part of Operation Onymous. In 2015, Ulbricht was convicted in federal court for multiple charges related to operating Silk Road and was given two life sentences without possibility of parole.[1][11][12]
+
+        <h2>operations</h2>
+        Operations
+        The website was launched in February 2011;[13] development had begun six months prior.[14][15] The name "Silk Road" comes from a historical network of trade routes started during the Han Dynasty (206 BCE – 220 CE) between Europe, India, China, and many other countries on the Afro-Eurasian landmass.[7] Silk Road was operated by the pseudonymous "Dread Pirate Roberts" (named after the fictional character from The Princess Bride), who was known for espousing libertarian ideals and criticizing regulation.[3][16] Two other individuals were also closely involved in the site's growth and success, known as Variety Jones and Smedley.[17]
+
+        In June 2011, Gawker published an article about the site[18] which led to an increase in notoriety and website traffic.[14] U.S. Senator Chuck Schumer asked federal law enforcement authorities to shut it down, including the Drug Enforcement Administration (DEA) and Department of Justice.[19]
+
+        In May 2013, Silk Road was taken down for a short period of time by a sustained DDoS attack.[20] On 23 June 2013, it was first reported that the DEA seized 11.02 bitcoins, then worth a total of $814, which the media suspected was a result of a Silk Road honeypot sting.[21][22] The FBI has claimed that the real IP address of the Silk Road server was found via data leaked directly from the site's CAPTCHA and it was located in Reykjavík, Iceland. IT security experts have doubted the FBI's claims because technical evidence suggests that no misconfiguration that could cause the specific leak was present at the time.[23][24]
+
+        Henry Farrell, an associate professor of political science and international affairs at George Washington University, analyzed Silk Road in an essay for Aeon in 2015.[25] He noted that Ulbricht created the marketplace to function without government oversight but found it difficult to verify anonymous transactions.[25] To sustain a steady stream of revenue, he started increasing oversight to ensure low transaction costs.[25] To do this, he added measures to ensure trustworthiness with implementation of an automated escrow payment system and automated review system.[25]
+
+        <h2>Arrest and trial of Ross Ulbricht</h2>
+        <p>Due, in part, to off-duty research conducted by IRS Criminal Investigation Special Agent Gary Alford,[26] Ross Ulbricht was alleged by the FBI to be the founder and owner of Silk Road and the person behind the pseudonym "Dread Pirate Roberts" (DPR). Alford searched for any mentions of the .onion URL or .tor address, stating that someone might have advertised or suggested the marketplace on Google. The first mention of the website was by a user named "altoid." Further searching into this altoid profile led him to a post about an open position that told interested applicants to contact what was Ross Ulbricht's personal email.[27] He was arrested on 1 October 2013 in San Francisco[9][28][29][30][31] in Glen Park Library, a branch of the San Francisco Public Library.[31] During the arrest, the FBI seized Ulbricht's laptop which he was using to connect to the servers and manage the marketplace.[32] Ulbricht was indicted on charges of engaging in a continuing criminal enterprise, distributing narcotics, distributing narcotics by means of the Internet, and four conspiracy charges related to distribution of narcotics, computer hacking, money laundering, and false identity documents.[31][33][34][35] He was separately indicted for a single murder-for-hire charge.[36] Prosecutors alleged that Ulbricht paid $730,000 to others to commit the murders, although none of the murders actually occurred.[37][36][38] Ulbricht ultimately was not prosecuted for any of the alleged murder attempts.[39]
+
+            The FBI initially seized 26,000 bitcoins from accounts on Silk Road, worth approximately $3.6 million at the time. An FBI spokesperson said that the agency would hold the bitcoins until Ulbricht's trial finished, after which the bitcoins would be liquidated.[40] In October 2013, the FBI reported that it had seized 144,000 bitcoins, worth $28.5 million, and that the bitcoins belonged to Ulbricht.[41] On 27 June 2014, the U.S. Marshals Service sold 29,657 bitcoins in 10 blocks in an online auction, estimated to be worth $18 million at contemporary rates and only about a quarter of the seized bitcoins. Another 144,342 bitcoins were kept which had been found on Ulbricht's computer, roughly $87 million.[42] Tim Draper bought the bitcoins at the auction with an estimated worth of $17 million, to lend them to a bitcoin start-up called Vaurum which is working in developing economies of emerging markets.[43]
+
+            Ulbricht's trial began on 13 January 2015 in federal court in Manhattan.[44] At the start of the trial, Ulbricht admitted to founding the Silk Road website, but claimed to have transferred control of the site to other people soon after he founded it.[45] Ulbricht's lawyers contended that Dread Pirate Roberts was really Mark Karpelès, and that Karpelès set up Ulbricht as a fall guy.[46] However, Judge Katherine B. Forrest ruled that any speculative statements regarding whether Karpelès or anyone else ran Silk Road would not be allowed, and statements already made would be stricken from the record.[47]
+
+            In the second week of the trial, prosecutors presented documents and chat logs from Ulbricht's computer that, they said, demonstrated how Ulbricht had administered the site for many months, which contradicted the defense's claim that Ulbricht had relinquished control of Silk Road. Ulbricht's attorney suggested that the documents and chat logs were planted there by way of BitTorrent, which was running on Ulbricht's computer at the time of his arrest.[47]
+
+            On 4 February 2015, the jury convicted Ulbricht of seven charges,[12] including charges of engaging in a continuing criminal enterprise, narcotics trafficking, money laundering, and computer hacking.[1][2] The continuing criminal enterprise charge has a minimum sentence of 20 years. The amount of narcotics distributed also triggered an additional 10-year minimum.[48] The government also accused Ulbricht of paying for the murders of at least five people, but there is no evidence that the murders were actually carried out, and the accusations never became formal charges against Ulbricht.[49][50]
+
+            During the trial, Judge Forrest received death threats.[38] Users of an underground site called The Hidden Wiki posted her personal information there, including her address and Social Security number. Ulbricht's lawyer Joshua Dratel said that he and his client "obviously, and as strongly as possible, condemn" the anonymous postings against the judge. "They do not in any way have anything to do with Ross Ulbricht or anyone associated with him or reflect his views or those of anyone associated with him," Dratel said.[51]
+
+            In late March 2015, a criminal complaint issued by the United States District Court for the Northern District of California led to the arrest of two former federal agents who had worked undercover in the Baltimore Silk Road investigation of Ulbricht, former Drug Enforcement Administration agent Carl Mark Force IV and Secret Service agent Shaun Bridges.[52][53] The agents are alleged to have kept funds that Ulbricht transferred to them in exchange for purported information about the investigation.[52][54] The agents were charged with wire fraud and money laundering.[55] In late November 2016, Ulbricht's lawyers brought forward a case on a third DEA agent, who they claim was leaking information about the investigation and tampered with evidence to omit chat logs showing conversations with him.[56]
+
+            In a letter to Judge Forrest before his sentencing, Ulbricht stated that his actions through Silk Road were committed through libertarian idealism and that "Silk Road was supposed to be about giving people the freedom to make their own choices" and admitted that he made a "terrible mistake" that "ruined his life."[57][58] On 29 May 2015, Ulbricht was given five sentences to be served concurrently, including two of life imprisonment without the possibility of parole.[59] He was also ordered to forfeit $183 million. Ulbricht's lawyer Joshua Dratel said that he would appeal the sentencing and the original guilty verdict.[49] On 31 May 2017, the United States Court of Appeals for the Second Circuit denied Ulbricht's appeal, and affirmed the judgment of conviction and life sentence, in a written opinion authored by Gerard E. Lynch, United States circuit judge.[60] The Supreme Court declined to review the case.[61]</p>
+
+            <h2>sales</h2>
+            <p>In March 2013, the site had 10,000 products for sale by vendors, 70% of which were drugs.[18][77] Drugs were grouped under the headings stimulants, psychedelics, prescription, precursors, other, opioids, ecstasy, dissociatives, and steroids/PEDs.[14][13][78][79] Fake driver's licenses were also offered for sale.[80] The site's terms of service prohibited the sale of certain items. When the Silk Road marketplace first began, the creator and administrators instituted terms of service that prohibited the sale of anything whose purpose was to "harm or defraud."[13][81] This included child pornography, stolen credit cards, assassinations, and weapons of any type; other darknet markets such as Black Market Reloaded gained user notoriety because they were not as restrictive on these items as the Silk Road incarnations were.[77][82] There were also legal goods and services for sale, such as apparel, art, books, cigarettes, erotica, jewellery, and writing services. A sister site, called "The Armoury," sold weapons (primarily firearms) during 2012, but was shut down, due to a lack of demand.[83]
+
+The Silk Road offered over 24,400 products related to drugs for sale and an infrastructure that made these transactions. The official sellers guide stated the prohibition of any sale of goods that were meant for harm or fraud, but allowed for prescription drugs, pornography, and counterfeit documents. Only users of Tor could access the Silk Road.[84]
+
+Buyers were able to leave reviews of sellers' products on the site and in an associated forum, where crowdsourcing provided information about the best sellers and worst scammers.[85] Most products were delivered through the mail, with the site's seller's guide instructing sellers how to vacuum-seal their products to escape detection.[86]</p>
     </div>
 </body>
+
 </html>

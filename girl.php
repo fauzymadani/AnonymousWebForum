@@ -1,15 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How to get a girlfriend</title>
+    <title>Dark Market Archetype</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            /* Warna latar belakang gelap */
+            color: #f0f0f0;
+            /* Warna teks terang untuk kontras */
+            font-family: 'Courier New', Courier, monospace;
+            /* Font yang memberikan kesan hacker */
+            line-height: 1.6;
+            /* Jarak antar baris untuk keterbacaan */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #282828;
+            /* Latar belakang header */
+            padding: 10px;
+            display: flex;
+            /* Menggunakan flexbox untuk penataan */
+            justify-content: space-between;
+            /* Membuat jarak antara elemen */
+            align-items: center;
+            /* Memusatkan elemen secara vertikal */
+        }
+
+        nav {
+            display: flex;
+            /* Menggunakan flexbox untuk nav */
+        }
+
+        nav a {
+            color: #f0f0f0;
+            /* Warna teks link */
+            padding: 10px 15px;
+            /* Padding untuk link */
+            text-decoration: none;
+            /* Menghilangkan garis bawah */
+            transition: background-color 0.3s;
+            color: yellowgreen;
+        }
+
+        .forum-logo {
+            display: flex;
+            /* Menggunakan flexbox untuk logo dan nama forum */
+            align-items: center;
+            /* Memusatkan logo dan nama secara vertikal */
+        }
+
+        .forum-logo img {
+            height: 40px;
+            /* Tinggi gambar logo */
+            margin-right: 10px;
+            /* Jarak antara gambar dan teks */
+        }
+
+        h1 {
+            text-align: center;
+            /* Memusatkan judul */
+            margin: 20px 0;
+            /* Jarak atas dan bawah judul */
+        }
+
+        .image {
+            text-align: center;
+            /* Memusatkan gambar */
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .image img {
+            max-width: 100%;
+            /* Memastikan gambar responsif */
+            height: auto;
+            /* Memastikan gambar menjaga aspek rasio */
+            margin-top: 20px;
+            border-radius: 20px;
+            box-shadow: 10px 10px 5px black;
+        }
+
+        .logo {
+            border-radius: 50%;
+        }
+
+        h1 {
+            color: #3498db;
+        }
+
+        a {
+            color: #3498db;
+            font-family: monospace;
+        }
+    </style>
 </head>
+
 <body>
-    <header><span><nav><button><a href="index.php">back to home</a></button></nav></span></header>
-    <h1>This site is under construction :)</h1>
+    <header>
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="category.php?category=Entertainment">entertaiment</a>
+            <a href="category.php?category=Misc.">misc</a>
+            <a href="category.php?category=Education">education</a>
+            <a href="category.php?category=Around%20the%20world">around the world</a>
+        </nav>
+        <div class="forum-logo">
+            <img src="./favicon/android-chrome-192x192.png" alt="Forum Logo" class="logo"> <!-- Ganti dengan path gambar logo Anda -->
+            <span>Anon Forum</span> <!-- Nama forum -->
+        </div>
+    </header>
+    <h1>the biggest dark market, Archetyp</h1>
+    <a href="http://4pt4axjgzmm4ibmxplfiuvopxzf775e5bqseyllafcecryfthdupjwyd.onion/" align="center">
+        <p>http://4pt4axjgzmm4ibmxplfiuvopxzf775e5bqseyllafcecryfthdupjwyd.onion/</p>
+    </a>
     <div class="image">
-    <img src="data:image/png;base64,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" alt="">
+        <img src="./favicon/arche.jpeg" alt="">
+        <p>Archetyp or Archetyp market is a darknet market launched in May 2020, operating on the Tor network and accessible only through specific secure web browsers. It only conducts transactions in Monero, a cryptocurrency designed to be private. Archetyp is known for its uptime and security.[1][2]</p>
+        The development of Archetyp Market is linked to the personal history of its founder, whose early life unfolded in socioeconomically challenged circumstances. These beginnings were punctuated by encounters with illicit substances. The founder's experiences with LSD at the age of 20 catalyzed a period of introspection and a critical reassessment of previous behaviors, including the habitual use of alcohol.[3] The Silk Road introduced the founder them to a set of values that would later influence the creation of Archetyp Market. Archetyp Market is distinct in its introduction of games and a lottery system,[4] features that differentiate it from other markets.[5] The founder positioned Archetyp Market as a counterpoint, seeking to balance commercial interests with principled conduct. The objective was to create a marketplace that would eschew the purely profit-driven tendencies of its predecessors in favor of a more value-oriented approach, contributing to broader discussions on drug decriminalization and legalization.[3]
     </div>
 </body>
+
 </html>

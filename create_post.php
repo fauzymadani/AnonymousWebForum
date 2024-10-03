@@ -130,7 +130,7 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
             /* Warna garis batas berubah saat fokus */
         }
 
-        button {
+        .submit {
             padding: 10px;
             /* background-color: #f39c12; */
             /* Warna tombol oranye terang */
@@ -152,6 +152,10 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
             color: yellow;
         }
 
+        .back {
+            background-color: #3498db;
+        }
+
         @media screen and (max-width: 480px) {
             .container {
                 width: 90%;
@@ -163,6 +167,7 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 <body>
     <!-- Form untuk membuat postingan baru -->
     <div class="container">
+        <a href="index.php"><button class="back">back</button></a>
         <h1>Create New Post</h1>
         <?php if ($error_message): ?>
             <p id="error-message" style="color:red;"><?= $error_message ?></p>
@@ -190,7 +195,7 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
             <label for="captcha">Enter CAPTCHA</label>
             <input type="text" name="captcha" required>
 
-            <button type="submit">Create Post</button>
+            <button type="submit" class="submit">Create Post</button>
         </form>
         <script>
             // Mengecek apakah elemen dengan id "error-message" ada
