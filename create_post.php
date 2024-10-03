@@ -39,6 +39,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $error_message = "Incorrect CAPTCHA. Please try again.";
     }
 }
+
+// Session timeout - Tambahkan ini di bagian atas
+if (isset($_SESSION['last_activity']) && (time() - $_SESSION['last_activity'] > 1800)) {
+    session_unset(); // Hapus semua session
+    session_destroy(); // Hancurkan session
+    header('Location: login.php'); // Redirect ke halaman login
+    exit;
+}
+$_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 ?>
 
 <!DOCTYPE html>

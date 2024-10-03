@@ -27,6 +27,8 @@ $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_
 $stmt = $pdo->prepare("SELECT content, created_by, created_at FROM comments WHERE post_id = :post_id ORDER BY created_at ASC");
 $stmt->execute(['post_id' => $post['id']]);
 $comments = $stmt->fetchAll();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -36,6 +38,7 @@ $comments = $stmt->fetchAll();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($post['title']); ?></title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         /* General Styles */
         body {
@@ -65,7 +68,8 @@ $comments = $stmt->fetchAll();
             border-radius: 8px;
             margin-bottom: 30px;
             position: relative;
-            border-left: 4px solid #3498db; /* Aksen biru */
+            border-left: 4px solid #3498db;
+            /* Aksen biru */
         }
 
         .post-header {
@@ -108,7 +112,8 @@ $comments = $stmt->fetchAll();
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 5px;
-            border-left: 4px solid #3498db; /* Aksen biru */
+            border-left: 4px solid #3498db;
+            /* Aksen biru */
         }
 
         .comment p {
@@ -151,7 +156,8 @@ $comments = $stmt->fetchAll();
 
         .add-comment button {
             padding: 10px;
-            background-color: #3498db; /* Aksen biru */
+            background-color: #3498db;
+            /* Aksen biru */
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -159,7 +165,8 @@ $comments = $stmt->fetchAll();
         }
 
         .add-comment button:hover {
-            background-color: #2980b9; /* Aksen biru saat hover */
+            background-color: #2980b9;
+            /* Aksen biru saat hover */
         }
 
         /* Footer styling */
@@ -176,6 +183,61 @@ $comments = $stmt->fetchAll();
         footer a:hover {
             text-decoration: underline;
         }
+
+        /* Style for post actions buttons (dark web - low effort aesthetic) */
+        .post-actions {
+            margin-top: 15px;
+        }
+
+        .post-actions a {
+            text-decoration: none;
+            padding: 10px 15px;
+            background-color: #1f1f1f;
+            color: #d3d3d3;
+            border: 1px solid #3c3c3c;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-right: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-actions a:hover {
+            background-color: #292929;
+        }
+
+        .post-actions a:active {
+            background-color: #333;
+        }
+
+        .post-actions form button {
+            padding: 10px 15px;
+            background-color: #262626;
+            color: #c1c1c1;
+            border: 1px solid #444;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-actions form button:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .post-actions form button:active {
+            background-color: #222;
+        }
+
+        .post-actions form button:focus {
+            outline: none;
+            border-color: #555;
+        }
+
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -207,12 +269,13 @@ $comments = $stmt->fetchAll();
             <?php if ($is_owner): ?>
                 <div class="post-actions">
                     <a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit Post</a>
-                    <form action="delete_post.php" method="POST" style="display:inline;">
+                    <form id="delete-post-form-<?php echo $post['id']; ?>" action="delete_post.php" method="POST" style="display:inline;">
                         <input type="hidden" name="id" value="<?php echo $post['id']; ?>">
-                        <button type="submit" onclick="return confirm('Are you sure you want to delete this post?');">Delete Post</button>
+                        <button type="button" onclick="confirmDelete(<?php echo $post['id']; ?>)">Delete Post</button>
                     </form>
                 </div>
             <?php endif; ?>
+
         </div>
 
         <!-- Komentar -->
@@ -242,7 +305,26 @@ $comments = $stmt->fetchAll();
 
     <?php include 'includes/footer.php'; ?>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function confirmDelete(postId) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "Do you really want to delete this post? This action cannot be undone.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById('delete-post-form-' + postId).submit();
+                }
+            });
+        }
+    </script>
+
 </body>
 
 </html>
-
