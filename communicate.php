@@ -113,6 +113,7 @@
             <img src="./favicon/android-chrome-192x192.png" alt="Forum Logo" class="logo"> <!-- Ganti dengan path gambar logo Anda -->
             <span>Anon Forum</span> <!-- Nama forum -->
         </div>
+        <a href="blog.php"><button>back</button></a>
     </header>
     <h1>Silk Road</h1>
         

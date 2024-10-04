@@ -182,11 +182,27 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
             <label for="category">Category</label>
             <select name="category" required>
                 <option value="Entertainment">Entertainment</option>
-                <!-- <option value="Hobbies & interest">Hobbies & interest</option> -->
                 <option value="Education">Education</option>
                 <option value="Misc.">Misc.</option>
+                <option value="Mecha">Mecha</option>
                 <option value="Around the world">Around the world</option>
+                <option value="Comics">Comics & Cartoons</option>
+                <option value="Technology">Technology</option>
+                <option value="Weapons">Weapons</option>
+                <option value="Auto">Auto</option>
+                <option value="Sports">Sports</option>
+                <option value="Photography">Photography</option>
+                <option value="Music">Music</option>
+                <option value="Fashion">Fashion</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="DIY">Do-It-Yourself</option>
+                <option value="Business">Business & Finance</option>
+                <option value="Travel">Travel</option>
+                <option value="Paranormal">Paranormal</option>
+                <option value="Random">Random</option>
+                <option value="OperatingSystem">OperatingSystem</option>
             </select>
+
 
             <!-- Bagian CAPTCHA -->
             <div>
