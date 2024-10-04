@@ -18,8 +18,8 @@ include 'includes/footer.php';
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
     <title>Anon Forum</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
@@ -125,6 +125,12 @@ include 'includes/footer.php';
         .navbar a, .announcement a {
             color: yellow;
         }
+
+        .create-new-post {
+            background-color: #800000;
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
     </style>
 </head>
 
@@ -143,7 +149,7 @@ include 'includes/footer.php';
         </div>
 
         <div class="boards-container">
-            <div class="boards-title">Boards</div>
+            <div class="boards-title">Boards</div><a href="create_post.php"><button class="create-new-post">create new post</button></a>
             <div class="boards-columns">
                 <div class="board-column">
                     <a href="category.php?category=Entertainment">Entertaiment</a>
@@ -178,7 +184,7 @@ include 'includes/footer.php';
 
         <footer>
             <p>Donate bitcoin to this location: <a style="font-family: monospace;">bc1q0cg7xarp8dxf24kerrmzws9zjk2qrh08exc7l7</a></p>
-            <p>Help improve this page? <a href="pgpkeyadmin.asc" download>Contact Admin</a></p>
+            <p>Help improve this page? <a href="pgpkeyadmin.asc" download>Contact Admin</a> with pgp encrypted message to this email: <strong>okmnjiijn@protonmail.com</strong></p>
             <p>Send encrypted messages to: <br>
             <details>
                 -----BEGIN PGP PUBLIC KEY BLOCK-----

@@ -20,120 +20,159 @@ $posts = $stmt->fetchAll();
 <html>
 
 <head>
-    <title>category</title>
+    <title>Category - <?php echo $category; ?></title>
     <style>
+        /* General Body Styling */
         body {
-            background-color: #121212;
-            color: #e0e0e0;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0e0d6;
+            color: #800000;
+            font-family: Tahoma, sans-serif;
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .container {
-            background-color: #1a1a1a;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
             max-width: 1000px;
-            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #d9d9d9;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
+        /* Header Styling */
         h1 {
             font-size: 2em;
-            text-align: left;
-            margin-bottom: 20px;
-            color: #d4af37;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
-        .create {
-            background-color: #333;
-            color: #fff;
+        /* Back button styling */
+        .back {
+            background-color: #800000;
+            color: whitesmoke;
             padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
             font-size: 1em;
             cursor: pointer;
             margin-bottom: 20px;
-            display: block;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-            width: max-content;
+            display: inline-block;
         }
 
-        button a {
+        .back:hover {
+            background-color: #2980b9;
+        }
+
+        .back a {
             text-decoration: none;
             color: inherit;
         }
 
-        button:hover {
-            background-color: #555;
+        /* Create New Post Button */
+        .create {
+            background-color: #800000;
+            color: whitesmoke;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: block;
+            width: max-content;
+            text-align: center;
         }
 
+        .create:hover {
+            background-color: #c0392b;
+        }
+
+        .create a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Table Styling */
         table {
             width: 100%;
             border-collapse: collapse;
+            margin-top: 20px;
             margin-bottom: 20px;
         }
 
         th, td {
             padding: 15px;
+            border-bottom: 1px solid #ccc;
             text-align: left;
-            border-bottom: 1px solid #333;
         }
 
         th {
-            background-color: #222;
-            color: #d4af37;
+            background-color: #800000;
+            color: #fff;
         }
 
         td {
-            background-color: #1f1f1f;
+            background-color: #f0e0d6;
         }
 
+        /* Post title styling */
         .post-title {
-            color: #c5c6c7;
             font-size: 1.2em;
+            font-weight: bold;
         }
 
         .post-title a {
             text-decoration: none;
-            color: inherit;
+            color: #800000;
         }
 
         .post-title a:hover {
-            color: #d4af37;
+            color: yellow;
         }
 
+        /* Post metadata styling */
         .post-meta {
-            color: #aaa;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        /* Last post styling */
+        .last-post {
+            color: #c96663;
             font-size: 0.9em;
         }
 
-        .back {
-            background-color: tomato;
-            border: 1px solid red;
-            margin-bottom: 20px;
-        }
+        /* Responsive design */
+        @media (max-width: 768px) {
+            th, td {
+                padding: 10px;
+            }
 
-        .back a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .last-post {
-            color: #77b7ff;
+            .create, .back {
+                font-size: 0.9em;
+                padding: 8px 15px;
+            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <a href="index.php"><button class="back">Back</button></a>
+        <!-- Back Button -->
+        <a href="index.php" class="back">Back</a>
+
+        <!-- Category Title -->
         <h1><?php echo $category; ?> Posts</h1>
 
-        <button class="create"><a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a></button>
+        <!-- Create New Post Button -->
+        <button class="create">
+            <a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a>
+        </button>
 
+        <!-- Table of Posts -->
         <table>
             <thead>
                 <tr>
@@ -143,10 +182,13 @@ $posts = $stmt->fetchAll();
                 </tr>
             </thead>
             <tbody>
+                <!-- Loop through posts and display each one -->
                 <?php foreach ($posts as $post): ?>
                     <tr>
                         <td class="post-title">
-                            <a href="post.php?id=<?php echo $post['id']; ?>"><?php echo $post['title']; ?></a>
+                            <a href="post.php?id=<?php echo $post['id']; ?>">
+                                <?php echo $post['title']; ?>
+                            </a>
                             <div class="post-meta">
                                 Posted by: <?php echo $post['user_id']; ?> | 
                                 <?php echo date('F j, Y', strtotime($post['created_at'])); ?>
@@ -169,3 +211,4 @@ $posts = $stmt->fetchAll();
 </body>
 
 </html>
+

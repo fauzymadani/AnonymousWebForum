@@ -32,6 +32,7 @@ $blogs = $query->fetchAll();
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
         }
 
         .blog-post {
@@ -59,14 +60,6 @@ $blogs = $query->fetchAll();
         .navbar {
             display: flex;
             justify-content: space-around;
-            background-color: #2e2e2e;
-            padding: 10px 0;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-            margin-top: 20px;
-            border-top: 1px solid #555;
-            border-radius: 5px;
         }
 
         .navbar a {
