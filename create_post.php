@@ -24,9 +24,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // CAPTCHA cocok, lanjutkan proses penyimpanan postingan
         $user_id = generateAnonymousUsername();
 
-        // Menyimpan postingan ke database
-        $stmt = $pdo->prepare("INSERT INTO posts (title, content, category, user_id) VALUES (:title, :content, :category, :user_id)");
-        $stmt->execute(['title' => $title, 'content' => $content, 'category' => $category, 'user_id' => $user_id]);
+        // Menangani upload gambar
+        $imagePath = null;
+        if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+            $targetDir = "uploads/";
+            $fileName = basename($_FILES["image"]["name"]);
+            $targetFilePath = $targetDir . $fileName;
+            $imageFileType = strtolower(pathinfo($targetFilePath, PATHINFO_EXTENSION));
+
+            // Validasi tipe file (hanya mengizinkan gambar)
+            $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
+            if (in_array($imageFileType, $allowedTypes)) {
+                // Pindahkan file ke folder uploads
+                if (move_uploaded_file($_FILES["image"]["tmp_name"], $targetFilePath)) {
+                    $imagePath = $targetFilePath;
+                } else {
+                    $error_message = "Error uploading the image.";
+                }
+            } else {
+                $error_message = "Only JPG, JPEG, PNG, and GIF files are allowed.";
+            }
+        }
+
+        // Menyimpan postingan ke database (termasuk path gambar)
+        $stmt = $pdo->prepare("INSERT INTO posts (title, content, category, user_id, image) VALUES (:title, :content, :category, :user_id, :image)");
+        $stmt->execute([
+            'title' => $title,
+            'content' => $content,
+            'category' => $category,
+            'user_id' => $user_id,
+            'image' => $imagePath
+        ]);
 
         // Setelah menyimpan postingan, simpan ID pengguna di sesi
         $_SESSION['user_id'] = $user_id;
@@ -63,7 +91,8 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         body {
             font-family: 'Courier New', Courier, monospace;
             /* Font monospaced yang umum di dark web */
-            background-color: #121212;
+            /* background-color: #121212; */
+            background-color: #f0e0d6;
             /* Warna latar belakang gelap */
             color: #e0e0e0;
             /* Warna teks yang kontras tapi tidak terlalu terang */
@@ -76,18 +105,16 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         }
 
         .container {
-            background-color: #1c1c1c;
+            background-color: white;
             /* Warna container yang sedikit lebih terang dari background */
             padding: 20px;
-            border: 1px solid #333;
             /* Batasan gelap di sekitar container */
-            border-radius: 5px;
-            width: 400px;
+            width: 600px;
         }
 
         h1 {
             text-align: center;
-            color: #e0e0e0;
+            color: black;
             margin-bottom: 20px;
         }
 
@@ -99,26 +126,23 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         label {
             margin-bottom: 5px;
             font-weight: bold;
-            color: #b3b3b3;
+            color: black;
             /* Warna label lebih pudar */
         }
 
         input[type="text"],
         textarea,
         select {
-            background-color: #121212;
+            background-color: #f0e0d6;
             /* Warna input yang sangat gelap */
-            color: #e0e0e0;
+            color: black;
             /* Teks input tetap kontras */
             margin-bottom: 15px;
             padding: 10px;
-            border: 1px solid #333;
-            /* Garis batas input sama dengan container */
-            border-radius: 3px;
             font-size: 16px;
             width: 100%;
             box-sizing: border-box;
-            outline: none;
+            
         }
 
         textarea {
@@ -136,18 +160,11 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
             padding: 10px;
             /* background-color: #f39c12; */
             /* Warna tombol oranye terang */
-            color: #121212;
+            color: whitesmoke;
             /* Teks tombol lebih gelap untuk kontras */
-            border: none;
-            border-radius: 3px;
             cursor: pointer;
             font-size: 16px;
-            border-radius: 20px;
-        }
-
-        button:hover {
-            background-color: #d35400;
-            /* Sedikit lebih gelap saat dihover */
+            background-color: #800000;
         }
 
         a {
@@ -155,7 +172,8 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         }
 
         .back {
-            background-color: #3498db;
+            background-color: #800000;
+            color: whitesmoke;
         }
 
         @media screen and (max-width: 480px) {
@@ -176,7 +194,7 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         <?php if ($error_message): ?>
             <p id="error-message" style="color:red;"><?= $error_message ?></p>
         <?php endif; ?>
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data"> <!-- Tambahkan enctype untuk upload gambar -->
             <label for="title">Title</label>
             <input type="text" name="title" required>
 
@@ -206,7 +224,10 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
                 <option value="Random">Random</option>
                 <option value="OperatingSystem">OperatingSystem</option>
             </select>
-
+            
+            <!-- Bagian untuk upload gambar -->
+            <label for="image">Attach Image</label>
+            <input type="file" name="image" accept="image/*">
 
             <!-- Bagian CAPTCHA -->
             <div>
@@ -230,8 +251,8 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 
     </div>
 
-
     <?php include 'includes/footer.php'; ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
 
 </body>
+</html>

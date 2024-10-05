@@ -22,11 +22,20 @@ if (!$post) {
 
 // Memeriksa apakah pengguna adalah pemilik postingan
 $is_owner = isset($_SESSION['user_id']) && $_SESSION['user_id'] === $post['user_id'];
+$imagePath = !empty($post['image']) ? htmlspecialchars($post['image']) : null;
 
 // Ambil komentar dari database berdasarkan post_id
 $stmt = $pdo->prepare("SELECT content, created_by, created_at FROM comments WHERE post_id = :post_id ORDER BY created_at ASC");
 $stmt->execute(['post_id' => $post['id']]);
 $comments = $stmt->fetchAll();
+
+$time_limit = strtotime('+24 hours', strtotime($post['created_at']));
+$current_time = time();
+
+if ($is_owner && $current_time <= $time_limit) {
+    // Show edit/delete buttons
+}
+
 
 
 ?>
@@ -58,6 +67,7 @@ $comments = $stmt->fetchAll();
             padding: 10px;
             background-color: #f0f0f5;
             border: 1px solid #b0b0b0;
+            position: relative;
         }
 
         /* Post styling */
@@ -67,7 +77,7 @@ $comments = $stmt->fetchAll();
             margin-bottom: 15px;
             border: 1px solid #d9d9d9;
             position: relative;
-            /* Tambahkan untuk post-header */
+            /* Pastikan ini ada untuk elemen anak dengan posisi absolute */
         }
 
         .post-header {
@@ -85,6 +95,7 @@ $comments = $stmt->fetchAll();
             text-align: center;
             /* Judul ditengah */
             color: #202020;
+            margin-top: 20px;
         }
 
         .post-user {
@@ -92,10 +103,17 @@ $comments = $stmt->fetchAll();
             font-size: 12px;
             position: absolute;
             right: 10px;
-            bottom: -92px;
-            /* User dan tanggal di pojok kanan bawah */
+            /* Posisi ke kanan */
+            top: 10px;
+            /* Posisi di atas */
             color: #707070;
+            margin-top: 0;
+            /* Tidak ada margin */
+            z-index: 1;
+            /* Untuk memastikan berada di atas konten lainnya */
         }
+
+
 
         .post-content {
             font-size: 0.9rem;
@@ -224,6 +242,17 @@ $comments = $stmt->fetchAll();
                 font-size: 1.1rem;
             }
         }
+
+        .post-image {
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .post-image img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #d9d9d9;
+        }
     </style>
 
 </head>
@@ -239,9 +268,14 @@ $comments = $stmt->fetchAll();
             </div>
             <div class="post-content">
                 <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-            </div>
 
-            <!-- Tampilkan link edit dan hapus hanya untuk pemilik postingan -->
+                <?php if ($imagePath): ?>
+                    <div class="post-image">
+                        <img src="<?php echo $imagePath; ?>" alt="Post Image" style="max-width: 100%; height: auto; margin-top: 1px; margin-right: 0; padding: 0;">
+                    </div>
+                <?php endif; ?>
+            </div>
+            <!-- Sisa kode -->
             <?php if ($is_owner): ?>
                 <div class="post-actions">
                     <a href="edit_post.php?id=<?php echo $post['id']; ?>">Edit Post</a>
@@ -251,8 +285,8 @@ $comments = $stmt->fetchAll();
                     </form>
                 </div>
             <?php endif; ?>
-
         </div>
+
 
         <!-- Komentar -->
         <div class="comment-section">
