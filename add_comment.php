@@ -2,15 +2,16 @@
 session_start();
 include 'includes/db.php'; // Pastikan ini menghubungkan ke database dengan benar
 
-if (!isset($_SESSION['user_id'])) {
-    $_SESSION['user_id'] = 'Anon-' . substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyz"), 0, 8);
-}
-echo $_SESSION['user_id']; // Debug untuk melihat apakah ID disimpan dengan benar
-
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $post_id = $_POST['post_id']; // ID postingan yang dikomentari
-    $content = $_POST['content']; // Konten komentar
+    $post_id = $_POST['post_id'];
+    $content = $_POST['content'];
+    $captcha_input = $_POST['captcha']; // Input CAPTCHA dari form
+
+    // Verifikasi CAPTCHA
+    if ($captcha_input != $_SESSION['captcha']) {
+        echo "CAPTCHA salah, silakan coba lagi!";
+        exit();
+    }
 
     // Menghasilkan ID anonim untuk pengguna jika belum ada di sesi
     if (!isset($_SESSION['user_id'])) {
@@ -26,5 +27,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: post.php?id=$post_id");
     exit();
 }
-?>
-

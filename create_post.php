@@ -55,6 +55,8 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 
 <head>
     <title>posting</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+
     <style>
         /* CSS untuk memperindah form dan menempatkannya di tengah */
         /* CSS untuk dark web style */
@@ -165,6 +167,8 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 </head>
 
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+
     <!-- Form untuk membuat postingan baru -->
     <div class="container">
         <a href="index.php"><button class="back">back</button></a>
@@ -228,4 +232,6 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
 
 
     <?php include 'includes/footer.php'; ?>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+
 </body>

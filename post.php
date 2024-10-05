@@ -35,193 +35,196 @@ $comments = $stmt->fetchAll();
 <html>
 
 <head>
-    
+
     <title><?php echo htmlspecialchars($post['title']); ?></title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
-    /* General Styles */
-    body {
-        font-family: Tahoma, sans-serif;
-        background-color: #e8e8e8;
-        color: #000;
-        margin: 0;
-        padding: 20px;
-        display: flex;
-        justify-content: center;
-    }
+        /* General Styles */
+        body {
+            font-family: Tahoma, sans-serif;
+            background-color: #f0e0d6;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
 
-    .container {
-        width: 100%;
-        max-width: 900px;
-        margin: 20px auto;
-        padding: 10px;
-        background-color: #f0f0f5;
-        border: 1px solid #b0b0b0;
-    }
-
-    /* Post styling */
-    .post {
-        background-color: #ffffff;
-        padding: 20px;
-        margin-bottom: 15px;
-        border: 1px solid #d9d9d9;
-        position: relative; /* Tambahkan untuk post-header */
-    }
-
-    .post-header {
-        display: block;
-        margin-bottom: 5px;
-        font-size: 13px;
-        color: #707070;
-        position: relative;
-    }
-
-    .post-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 40px;
-        text-align: center; /* Judul ditengah */
-        color: #202020;
-    }
-
-    .post-user {
-        font-style: italic;
-        font-size: 12px;
-        position: absolute;
-        right: 10px;
-        bottom: -72px; /* User dan tanggal di pojok kanan bawah */
-        color: #707070;
-    }
-
-    .post-content {
-        font-size: 0.9rem;
-        margin-top: 10px;
-        color: #2c2c2c;
-    }
-
-    /* Comment section styling */
-    .comment-section {
-        margin-top: 10px;
-        padding: 10px;
-        border-top: 1px solid #c2c2c2;
-        background-color: #fafafa;
-    }
-
-    .comment {
-        background-color: #ffffff;
-        padding: 8px;
-        margin-bottom: 10px;
-        border: 1px solid #d9d9d9;
-    }
-
-    .comment p {
-        margin: 5px 0;
-        font-size: 0.85rem;
-        color: #3a3a3a;
-    }
-
-    .comment-user {
-        font-weight: bold;
-        font-size: 0.9rem;
-        color: #007700;
-    }
-
-    .comment-timestamp {
-        font-size: 0.75rem;
-        color: #999999;
-        text-align: right;
-    }
-
-    /* Add comment box styling */
-    .add-comment {
-        margin-top: 10px;
-        padding: 10px;
-        border: 1px solid #d9d9d9;
-        background-color: #f7f7f7;
-    }
-
-    .add-comment textarea {
-        width: 100%;
-        height: 60px;
-        padding: 8px;
-        border: 1px solid #cccccc;
-        border-radius: 3px;
-        resize: none;
-        font-family: Tahoma, sans-serif;
-        font-size: 13px;
-    }
-
-    .add-comment button {
-        margin-top: 10px;
-        padding: 5px 10px;
-        background-color: #800000;
-        color: whitesmoke;
-        border: 1px solid #b0b0b0;
-        border-radius: 3px;
-        cursor: pointer;
-    }
-
-    .add-comment button:hover {
-        background-color: #d0d0d0;
-    }
-
-    /* Style for post actions buttons */
-    .post-actions {
-        margin-top: 10px;
-        display: flex;
-        gap: 10px;
-    }
-
-    .post-actions a,
-    .post-actions form button {
-        text-decoration: none;
-        padding: 5px 10px;
-        background-color: #f0f0f0;
-        color: #000;
-        border: 1px solid #b0b0b0;
-        font-family: Tahoma, sans-serif;
-        font-size: 12px;
-        cursor: pointer;
-    }
-
-    .post-actions a:hover,
-    .post-actions form button:hover {
-        background-color: #e0e0e0;
-    }
-
-    /* Footer styling */
-    footer {
-        margin-top: 20px;
-        text-align: center;
-        font-size: 12px;
-    }
-
-    footer a {
-        color: #0073e6;
-        text-decoration: none;
-    }
-
-    footer a:hover {
-        text-decoration: underline;
-    }
-
-    .back-button {
-        background-color: #800000;
-        color: whitesmoke;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
         .container {
             width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #f0f0f5;
+            border: 1px solid #b0b0b0;
+        }
+
+        /* Post styling */
+        .post {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border: 1px solid #d9d9d9;
+            position: relative;
+            /* Tambahkan untuk post-header */
+        }
+
+        .post-header {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 13px;
+            color: #707070;
+            position: relative;
         }
 
         .post-title {
-            font-size: 1.1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 40px;
+            text-align: center;
+            /* Judul ditengah */
+            color: #202020;
         }
-    }
-</style>
+
+        .post-user {
+            font-style: italic;
+            font-size: 12px;
+            position: absolute;
+            right: 10px;
+            bottom: -92px;
+            /* User dan tanggal di pojok kanan bawah */
+            color: #707070;
+        }
+
+        .post-content {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            color: #2c2c2c;
+        }
+
+        /* Comment section styling */
+        .comment-section {
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid #c2c2c2;
+            background-color: #fafafa;
+        }
+
+        .comment {
+            background-color: #ffffff;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #d9d9d9;
+        }
+
+        .comment p {
+            margin: 5px 0;
+            font-size: 0.85rem;
+            color: #3a3a3a;
+        }
+
+        .comment-user {
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #007700;
+        }
+
+        .comment-timestamp {
+            font-size: 0.75rem;
+            color: #999999;
+            text-align: right;
+        }
+
+        /* Add comment box styling */
+        .add-comment {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #d9d9d9;
+            background-color: #f7f7f7;
+        }
+
+        .add-comment textarea {
+            width: 100%;
+            height: 60px;
+            padding: 8px;
+            border: 1px solid #cccccc;
+            border-radius: 3px;
+            resize: none;
+            font-family: Tahoma, sans-serif;
+            font-size: 13px;
+        }
+
+        .add-comment button {
+            margin-top: 10px;
+            padding: 5px 10px;
+            background-color: #800000;
+            color: whitesmoke;
+            border: 1px solid #b0b0b0;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .add-comment button:hover {
+            background-color: #d0d0d0;
+        }
+
+        /* Style for post actions buttons */
+        .post-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-actions a,
+        .post-actions form button {
+            text-decoration: none;
+            padding: 5px 10px;
+            background-color: #f0f0f0;
+            color: #000;
+            border: 1px solid #b0b0b0;
+            font-family: Tahoma, sans-serif;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .post-actions a:hover,
+        .post-actions form button:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Footer styling */
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        footer a {
+            color: #0073e6;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .back-button {
+            background-color: #800000;
+            color: whitesmoke;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+            }
+
+            .post-title {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 
 </head>
 
@@ -269,6 +272,10 @@ $comments = $stmt->fetchAll();
             <form action="add_comment.php" method="POST">
                 <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                 <textarea name="content" placeholder="Add a comment..." required></textarea>
+
+                <!-- CAPTCHA -->
+                <p><img src="captcha.php" alt="CAPTCHA image"></p>
+                <p><input type="text" name="captcha" placeholder="Enter CAPTCHA" required></p>
                 <button type="submit" class="submit">Submit Comment</button>
             </form>
         </div>

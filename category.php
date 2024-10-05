@@ -53,14 +53,9 @@ $posts = $stmt->fetchAll();
         }
 
         /* Back button styling */
-        .back {
+        .back button {
             background-color: #800000;
             color: whitesmoke;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            margin-bottom: 20px;
-            display: inline-block;
         }
 
         .back:hover {
@@ -76,13 +71,6 @@ $posts = $stmt->fetchAll();
         .create {
             background-color: #800000;
             color: whitesmoke;
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-            margin-bottom: 20px;
-            display: block;
-            width: max-content;
-            text-align: center;
         }
 
         .create:hover {
@@ -162,15 +150,15 @@ $posts = $stmt->fetchAll();
 <body>
     <div class="container">
         <!-- Back Button -->
-        <a href="index.php" class="back">Back</a>
+        <a href="index.php" class="back"><button>back</button></a>
 
         <!-- Category Title -->
         <h1><?php echo $category; ?> Posts</h1>
 
         <!-- Create New Post Button -->
-        <button class="create">
-            <a href="create_post.php?category=<?php echo $category; ?>">Create New Post</a>
-        </button>
+        
+            <a href="create_post.php?category=<?php echo $category; ?>"><button class="create">Create New Post</button></a>
+        
 
         <!-- Table of Posts -->
         <table>

@@ -54,7 +54,7 @@ if ($is_owner && (($current_time - $created_at) <= $time_limit)) {
     <style>
         /* Dark Web Archetype - Form Style */
         body {
-            background-color: #121212;
+            background-color: #f0e0d6;
             color: #e5e5e5;
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
@@ -62,33 +62,31 @@ if ($is_owner && (($current_time - $created_at) <= $time_limit)) {
         }
 
         form {
-            background-color: #1c1c1c;
+            background-color: whitesmoke;
             padding: 20px;
             margin: 50px auto;
             width: 80%;
             max-width: 700px;
-            border: 1px solid #444;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
         }
 
         form label {
             display: block;
             margin-bottom: 10px;
             font-size: 18px;
-            color: #a0a0a0;
+            color: #800000;
         }
 
         form input[type="text"],
         form textarea {
             width: 100%;
             padding: 10px;
-            background-color: #262626;
+            background-color: white;
             border: 1px solid #333;
-            color: #fff;
+            color: black;
             font-size: 16px;
             border-radius: 4px;
             margin-bottom: 20px;
+            margin-right: 20px;
             font-family: 'Courier New', Courier, monospace;
         }
 
@@ -103,14 +101,9 @@ if ($is_owner && (($current_time - $created_at) <= $time_limit)) {
         }
 
         form button {
-            background-color: #444;
-            color: #e5e5e5;
-            border: 1px solid #555;
-            padding: 10px 20px;
-            font-size: 18px;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background-color 0.3s ease;
+            background-color: #800000;
+            padding: 7px;
+            color: whitesmoke;
         }
 
         form button:hover {

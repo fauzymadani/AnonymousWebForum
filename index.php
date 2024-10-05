@@ -13,6 +13,35 @@ $_SESSION['last_activity'] = time();
 
 include 'includes/footer.php';
 ?>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $recaptcha_response = $_POST['g-recaptcha-response'];
+    $secret_key = '6LdHR1gqAAAAAEarOconZgR7ncs551Fe_GYZw8HJ';
+
+    // Verifikasi reCAPTCHA dengan mengirimkan permintaan ke Google
+    $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret_key}&response={$recaptcha_response}");
+    $response_data = json_decode($verify_response);
+
+    if ($response_data->success) {
+        // CAPTCHA berhasil diverifikasi
+        echo "Selamat, Anda bukan robot!";
+    } else {
+        // CAPTCHA gagal diverifikasi
+        echo "Verifikasi CAPTCHA gagal, silakan coba lagi.";
+    }
+}
+
+?>
+<?php
+session_start();
+
+// Periksa apakah pengguna sudah terverifikasi
+if (!isset($_SESSION['verified'])) {
+    // Arahkan ke halaman verifikasi
+    header("Location: verification.php");
+    exit();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +53,8 @@ include 'includes/footer.php';
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="shortcut icon" href="./favicon/favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <style>
         /* Style umum mirip dengan 4chan */
         body {
@@ -122,7 +153,8 @@ include 'includes/footer.php';
             text-decoration: underline;
         }
 
-        .navbar a, .announcement a {
+        .navbar a,
+        .announcement a {
             color: yellow;
         }
 
@@ -131,15 +163,38 @@ include 'includes/footer.php';
             margin-bottom: 20px;
             color: whitesmoke;
         }
+
+        .disabled {
+            pointer-events: none;
+            /* Menonaktifkan interaksi */
+            color: gray;
+            /* Mengubah warna untuk menunjukkan bahwa tautan dinonaktifkan */
+        }
+
+        .verify-button {
+            background-color: #800000;
+            color: whitesmoke;
+            margin-top: 10px;
+        }
     </style>
 </head>
 
 <body>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+
+
+    <!-- <form method="POST" action="index.php">
+        
+        <div class="g-recaptcha" data-sitekey="6LdHR1gqAAAAAF4FqKgGQRuAgPKO2FapNLmo4qMq"></div>
+        <button type="submit">Submit</button>
+    </form> -->
+
     <div class="container">
         <h1>Welcome to Anon Forum</h1>
 
         <div class="announcement">
-            <p>Read our <a href="rule.html">Rules</a> and <a href="#" id="faq-link">FAQ</a> before participating!</p>
+            <p>Read our <a href="rule.html">Rules</a> and <a href="#" id="faq-link">FAQ</a> before participating!, <strong>you have to verify you're not a robot before exploring our forum!</strong></p>
             <div class="navbar">
                 <a href="index.php">Home</a>
                 <a href="blog.php">Blog</a>
@@ -148,36 +203,41 @@ include 'includes/footer.php';
             </div>
         </div>
 
+        <form method="POST" action="index.php" align="center">
+            <!-- Field lainnya seperti input CAPTCHA -->
+            <div class="g-recaptcha" data-sitekey="6LdHR1gqAAAAAF4FqKgGQRuAgPKO2FapNLmo4qMq" data-callback="onCaptchaSuccess" align="center"></div>
+            <button type="submit" align="center" class="verify-button">Submit</button>
+        </form>
         <div class="boards-container">
-            <div class="boards-title">Boards</div><a href="create_post.php"><button class="create-new-post">create new post</button></a>
+            <div class="boards-title">Boards</div><a href="create_post.php" class="board-link"><button class="create-new-post">create new post</button></a>
             <div class="boards-columns">
                 <div class="board-column">
-                    <a href="category.php?category=Entertainment">Entertaiment</a>
-                    <a href="category.php?category=Education">Education</a>
-                    <a href="category.php?category=Misc.">Misc</a>
-                    <a href="category.php?category=Mecha">Mecha</a>
-                    <a href="category.php?category=Around%20the%20world">Around the world</a>
+                    <a href="category.php?category=Entertainment" class="board-link">Entertaiment</a>
+                    <a href="category.php?category=Education" class="board-link">Education</a>
+                    <a href="category.php?category=Misc." class="board-link">Misc</a>
+                    <a href="category.php?category=Mecha" class="board-link">Mecha</a>
+                    <a href="category.php?category=Around%20the%20world" class="board-link">Around the world</a>
                 </div>
                 <div class="board-column">
-                    <a href="category.php?category=Comics">Comics & Cartoons</a>
-                    <a href="category.php?category=Technology">Technology</a>
-                    <a href="category.php?category=Weapons">Weapons</a>
-                    <a href="category.php?category=Auto">Auto</a>
-                    <a href="category.php?category=Sports">Sports</a>
+                    <a href="category.php?category=Comics" class="board-link">Comics & Cartoons</a>
+                    <a href="category.php?category=Technology" class="board-link">Technology</a>
+                    <a href="category.php?category=Weapons" class="board-link">Weapons</a>
+                    <a href="category.php?category=Auto" class="board-link">Auto</a>
+                    <a href="category.php?category=Sports" class="board-link">Sports</a>
                 </div>
                 <div class="board-column">
-                    <a href="category.php?category=Photography">Photography</a>
-                    <a href="category.php?category=Music">Music</a>
-                    <a href="category.php?category=Fashion">Fashion</a>
-                    <a href="category.php?category=GraphicDesign">Graphic Design</a>
-                    <a href="category.php?category=DIY">Do-It-Yourself</a>
+                    <a href="category.php?category=Photography" class="board-link">Photography</a>
+                    <a href="category.php?category=Music" class="board-link">Music</a>
+                    <a href="category.php?category=Fashion" class="board-link">Fashion</a>
+                    <a href="category.php?category=Graphic%20Design" class="board-link">Graphic Design</a>
+                    <a href="category.php?category=DIY" class="board-link">Do-It-Yourself</a>
                 </div>
                 <div class="board-column">
-                    <a href="category.php?category=Business">Business & Finance</a>
-                    <a href="category.php?category=Travel">Travel</a>
-                    <a href="category.php?category=Paranormal">Paranormal</a>
-                    <a href="category.php?category=Random">Random</a>
-                    <a href="category.php?category=OperatingSystem">OperatingSystem</a>
+                    <a href="category.php?category=Business" class="board-link">Business & Finance</a>
+                    <a href="category.php?category=Travel" class="board-link">Travel</a>
+                    <a href="category.php?category=Paranormal" class="board-link">Paranormal</a>
+                    <a href="category.php?category=Random"  class="board-link">Random</a>
+                    <a href="category.php?category=OperatingSystem" class="board-link">OperatingSystem</a>
                 </div>
             </div>
         </div>
@@ -243,6 +303,7 @@ include 'includes/footer.php';
             </p>
         </footer>
     </div>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         document.getElementById('faq-link').addEventListener('click', function(event) {
@@ -268,6 +329,83 @@ include 'includes/footer.php';
             });
         });
     </script>
+    <script>
+    // Menonaktifkan semua tautan di dalam navbar
+    document.querySelectorAll('.navbar a').forEach(link => {
+        link.classList.add('disabled');
+    });
+
+    // Fungsi untuk mengaktifkan tautan setelah reCAPTCHA berhasil
+    function enableLinks() {
+        document.querySelectorAll('.navbar a').forEach(link => {
+            link.classList.remove('disabled');
+        });
+    }
+
+    // Panggil fungsi enableLinks jika reCAPTCHA berhasil
+    function onCaptchaSuccess() {
+        enableLinks();
+    }
+</script>
+<script>
+    // Menonaktifkan tautan kategori
+    const links = document.querySelectorAll('.board-link');
+    links.forEach(link => {
+        link.style.pointerEvents = 'none'; // Menonaktifkan interaksi
+        link.style.color = 'gray'; // Menandai tautan sebagai non-aktif
+    });
+
+    function enableLinks() {
+        links.forEach(link => {
+            link.style.pointerEvents = 'auto'; // Mengaktifkan interaksi
+            link.style.color = '#800000'; // Mengembalikan warna tautan
+        });
+    }
+
+    function onSubmit(e) {
+        e.preventDefault(); // Mencegah pengiriman form secara default
+        const recaptchaResponse = grecaptcha.getResponse();
+
+        if (recaptchaResponse.length === 0) {
+            alert("Silakan centang 'I'm not a robot' untuk melanjutkan.");
+        } else {
+            // Kirim permintaan untuk memverifikasi reCAPTCHA
+            fetch('your-verification-endpoint.php', { // Ganti dengan endpoint verifikasi Anda
+                method: 'POST',
+                body: new URLSearchParams({ 'g-recaptcha-response': recaptchaResponse })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Jika verifikasi berhasil, aktifkan tautan
+                    enableLinks();
+                    Swal.fire("Verifikasi Berhasil!", "Anda sekarang dapat mengakses semua kategori.", "success");
+                } else {
+                    Swal.fire("Verifikasi Gagal!", "Silakan coba lagi.", "error");
+                }
+            });
+        }
+    }
+
+    // Mengaitkan fungsi submit form
+    document.querySelector('form').addEventListener('submit', onSubmit);
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+<script>
+    // if using synchronous loading, will be called once the DOM is ready
+turnstile.ready(function () {
+  turnstile.render("#example-container", {
+    sitekey: "<YOUR_SITE_KEY>",
+    callback: function (token) {
+      console.log(`Challenge Success ${token}`);
+    },
+  });
+});
+</script>
+
+
+
 </body>
 
 </html>
