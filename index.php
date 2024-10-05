@@ -158,7 +158,7 @@ if (!isset($_SESSION['verified'])) {
             color: yellow;
         }
 
-        .create-new-post {
+        .create-new-post, .reply-button {
             background-color: #800000;
             margin-bottom: 20px;
             color: whitesmoke;
@@ -175,6 +175,14 @@ if (!isset($_SESSION['verified'])) {
             background-color: #800000;
             color: whitesmoke;
             margin-top: 10px;
+        }
+
+        .image-span {
+            width: 70px;
+            height: 50px;
+            margin-left: 20px;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
     </style>
 </head>
@@ -196,9 +204,9 @@ if (!isset($_SESSION['verified'])) {
         <div class="announcement">
             <p>Read our <a href="rule.html">Rules</a> and <a href="#" id="faq-link">FAQ</a> before participating!, <strong>you have to verify you're not a robot before exploring our forum!</strong></p>
             <div class="navbar">
-                <a href="index.php">Home</a>
-                <a href="blog.php">Blog</a>
-                <a href="#" id="faq-link">FAQ</a>
+                <a href="index.php" class="board-link">Home</a>
+                <a href="blog.php" class="board-link">Blog</a>
+                <a href="#" id="faq-link" class="board-link">FAQ</a>
                 <!-- Tambahkan link lain sesuai kebutuhan -->
             </div>
         </div>
@@ -209,7 +217,8 @@ if (!isset($_SESSION['verified'])) {
             <button type="submit" align="center" class="verify-button">Submit</button>
         </form>
         <div class="boards-container">
-            <div class="boards-title">Boards</div><a href="create_post.php" class="board-link"><button class="create-new-post">create new post</button></a>
+            <div class="boards-title">Boards</div><a href="create_post.php" class="board-link"><button class="create-new-post">create new post</button></a> <a href="./howtoreply.php"><button class="reply-button">How do i reply a comment?</button></a>
+            <h1 align="center"><strong align="center">DO NOT SPAMMING!</strong><img src="./favicon/android-chrome-192x192.png" alt="" class="image-span"></h1>
             <div class="boards-columns">
                 <div class="board-column">
                     <a href="category.php?category=Entertainment" class="board-link">Entertaiment</a>

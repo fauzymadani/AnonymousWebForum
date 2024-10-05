@@ -89,7 +89,6 @@ $_SESSION['last_activity'] = time(); // Update waktu terakhir aktivitas
         /* CSS untuk memperindah form dan menempatkannya di tengah */
         /* CSS untuk dark web style */
         body {
-            font-family: 'Courier New', Courier, monospace;
             /* Font monospaced yang umum di dark web */
             /* background-color: #121212; */
             background-color: #f0e0d6;
