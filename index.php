@@ -158,7 +158,8 @@ if (!isset($_SESSION['verified'])) {
             color: yellow;
         }
 
-        .create-new-post, .reply-button {
+        .create-new-post,
+        .reply-button {
             background-color: #800000;
             margin-bottom: 20px;
             color: whitesmoke;
@@ -183,6 +184,11 @@ if (!isset($_SESSION['verified'])) {
             margin-left: 20px;
             margin-bottom: 0;
             padding-bottom: 0;
+        }
+
+        .greeter {
+            font-family: monospace;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -245,7 +251,7 @@ if (!isset($_SESSION['verified'])) {
                     <a href="category.php?category=Business" class="board-link">Business & Finance</a>
                     <a href="category.php?category=Travel" class="board-link">Travel</a>
                     <a href="category.php?category=Paranormal" class="board-link">Paranormal</a>
-                    <a href="category.php?category=Random"  class="board-link">Random</a>
+                    <a href="category.php?category=Random" class="board-link">Random</a>
                     <a href="category.php?category=OperatingSystem" class="board-link">OperatingSystem</a>
                 </div>
             </div>
@@ -309,6 +315,28 @@ if (!isset($_SESSION['verified'])) {
                 -----END PGP PUBLIC KEY BLOCK-----
 
             </details>
+            <details class="greeter">
+                -----BEGIN PGP SIGNED MESSAGE-----<br>
+                Hash: SHA512<br>
+                <br>
+                Please read the rule before making a post and Faq about this forum<br>
+                -----BEGIN PGP SIGNATURE-----<br>
+
+                iQIzBAEBCgAdFiEEZFSHdhPyF4ApFuH4L0pyCwpIvzwFAmcXCX8ACgkQL0pyCwpI<br>
+                vzxUaw/9HW8CtuaC0EC+2WvxGWXtDWz0dc//u9yRXe/xlnGNSYE896zH4iQ6ADQ/<br>
+                cBcYqwXZeoE03ZGtCV8xSm4mib9obALDQuTM1PG/eTsoz4xzyRdu5kGYuypH9ugp<br>
+                bPNpG/fTkLDirB38m0eu9FVu5VBJCS49zoL+SGXV9KHHebc+rYz2fa5r9SqN6z7U<br>
+                a5HP6wHOU78AILLdt3EUcXCsK6k2sXk1XzLOaNII01Y6e3t6JVyhdCkVvtauR9+T<br>
+                P2nGlq6cKqqF76rZNEQq4MqG4kKS4U7Vt/62oNaXXrkP6cFkjonAf1QeZ9DBdBrE<br>
+                F2/45I6Mz+bMABMnUdV+Utn3VwM65zqtnYTzAnpOExTEAf13bs835054uhnsQ+ed<br>
+                RDjT7j3h9ciTAAXdMVzHvfNWy9fOGJVmEuPoPCxOoSvZeD+AVIlZIN/DMG5ebPJI<br>
+                pADw42HoNJDaWi0kiUUrvYke3EszT7FvBdQ8kyeVkK53WOyQNUUQLfsE5YLwFQrb<br>
+                KwA8BKlz1dsFs33cxjUQeErjafvDw4bOsYsoervWMPzqky6MRxFMocXPsVE2QNBG<br>
+                bo6LTcxW5yuXBk1wfgpWgJ6YSmxlvW08dYqYDhTqfswStKLDq9/jnD5kiX8a0mfe<br>
+                THbma7stauAZRG+4/N96I0RQr6npKULNm09jnfMC9nPBlZ6ZNfw=<br>
+                =WSG+<br>
+                -----END PGP SIGNATURE-----<br>
+            </details>
             </p>
         </footer>
     </div>
@@ -339,79 +367,81 @@ if (!isset($_SESSION['verified'])) {
         });
     </script>
     <script>
-    // Menonaktifkan semua tautan di dalam navbar
-    document.querySelectorAll('.navbar a').forEach(link => {
-        link.classList.add('disabled');
-    });
-
-    // Fungsi untuk mengaktifkan tautan setelah reCAPTCHA berhasil
-    function enableLinks() {
+        // Menonaktifkan semua tautan di dalam navbar
         document.querySelectorAll('.navbar a').forEach(link => {
-            link.classList.remove('disabled');
+            link.classList.add('disabled');
         });
-    }
 
-    // Panggil fungsi enableLinks jika reCAPTCHA berhasil
-    function onCaptchaSuccess() {
-        enableLinks();
-    }
-</script>
-<script>
-    // Menonaktifkan tautan kategori
-    const links = document.querySelectorAll('.board-link');
-    links.forEach(link => {
-        link.style.pointerEvents = 'none'; // Menonaktifkan interaksi
-        link.style.color = 'gray'; // Menandai tautan sebagai non-aktif
-    });
-
-    function enableLinks() {
-        links.forEach(link => {
-            link.style.pointerEvents = 'auto'; // Mengaktifkan interaksi
-            link.style.color = '#800000'; // Mengembalikan warna tautan
-        });
-    }
-
-    function onSubmit(e) {
-        e.preventDefault(); // Mencegah pengiriman form secara default
-        const recaptchaResponse = grecaptcha.getResponse();
-
-        if (recaptchaResponse.length === 0) {
-            alert("Silakan centang 'I'm not a robot' untuk melanjutkan.");
-        } else {
-            // Kirim permintaan untuk memverifikasi reCAPTCHA
-            fetch('your-verification-endpoint.php', { // Ganti dengan endpoint verifikasi Anda
-                method: 'POST',
-                body: new URLSearchParams({ 'g-recaptcha-response': recaptchaResponse })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Jika verifikasi berhasil, aktifkan tautan
-                    enableLinks();
-                    Swal.fire("Verifikasi Berhasil!", "Anda sekarang dapat mengakses semua kategori.", "success");
-                } else {
-                    Swal.fire("Verifikasi Gagal!", "Silakan coba lagi.", "error");
-                }
+        // Fungsi untuk mengaktifkan tautan setelah reCAPTCHA berhasil
+        function enableLinks() {
+            document.querySelectorAll('.navbar a').forEach(link => {
+                link.classList.remove('disabled');
             });
         }
-    }
 
-    // Mengaitkan fungsi submit form
-    document.querySelector('form').addEventListener('submit', onSubmit);
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
-<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
-<script>
-    // if using synchronous loading, will be called once the DOM is ready
-turnstile.ready(function () {
-  turnstile.render("#example-container", {
-    sitekey: "<YOUR_SITE_KEY>",
-    callback: function (token) {
-      console.log(`Challenge Success ${token}`);
-    },
-  });
-});
-</script>
+        // Panggil fungsi enableLinks jika reCAPTCHA berhasil
+        function onCaptchaSuccess() {
+            enableLinks();
+        }
+    </script>
+    <script>
+        // Menonaktifkan tautan kategori
+        const links = document.querySelectorAll('.board-link');
+        links.forEach(link => {
+            link.style.pointerEvents = 'none'; // Menonaktifkan interaksi
+            link.style.color = 'gray'; // Menandai tautan sebagai non-aktif
+        });
+
+        function enableLinks() {
+            links.forEach(link => {
+                link.style.pointerEvents = 'auto'; // Mengaktifkan interaksi
+                link.style.color = '#800000'; // Mengembalikan warna tautan
+            });
+        }
+
+        function onSubmit(e) {
+            e.preventDefault(); // Mencegah pengiriman form secara default
+            const recaptchaResponse = grecaptcha.getResponse();
+
+            if (recaptchaResponse.length === 0) {
+                alert("Silakan centang 'I'm not a robot' untuk melanjutkan.");
+            } else {
+                // Kirim permintaan untuk memverifikasi reCAPTCHA
+                fetch('your-verification-endpoint.php', { // Ganti dengan endpoint verifikasi Anda
+                        method: 'POST',
+                        body: new URLSearchParams({
+                            'g-recaptcha-response': recaptchaResponse
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Jika verifikasi berhasil, aktifkan tautan
+                            enableLinks();
+                            Swal.fire("Verifikasi Berhasil!", "Anda sekarang dapat mengakses semua kategori.", "success");
+                        } else {
+                            Swal.fire("Verifikasi Gagal!", "Silakan coba lagi.", "error");
+                        }
+                    });
+            }
+        }
+
+        // Mengaitkan fungsi submit form
+        document.querySelector('form').addEventListener('submit', onSubmit);
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blur.js/1.0.0/blur.min.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+    <script>
+        // if using synchronous loading, will be called once the DOM is ready
+        turnstile.ready(function() {
+            turnstile.render("#example-container", {
+                sitekey: "<YOUR_SITE_KEY>",
+                callback: function(token) {
+                    console.log(`Challenge Success ${token}`);
+                },
+            });
+        });
+    </script>
 
 
 
