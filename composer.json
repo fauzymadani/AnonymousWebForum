@@ -2,9 +2,9 @@
     "name": "fauzy/anonymous-web-forum",
     "description": "A simple forum application",
     "require": {
-        "php": ">=7.4 <8.3"
+        "php": ">=7.4 <8.4"
     },
-    "license": "GPL-3.0",
+    "license": "GPL-3.0-or-later",
     "autoload": {
         "psr-4": {
             "App\\": "src/"
