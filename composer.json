@@ -2,7 +2,7 @@
     "name": "fauzy/anonymous-web-forum",
     "description": "A simple forum application",
     "require": {
-        "php": ">=7.4 <8.4"
+        "php": ">=7.4 <8.3"
     },
     "license": "GPL-3.0",
     "autoload": {
