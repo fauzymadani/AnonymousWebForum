@@ -1,5 +1,5 @@
 # AnonymousWebForum
-
+[![PHP Composer](https://github.com/fauzymadani/AnonymousWebForum/actions/workflows/php.yml/badge.svg)](https://github.com/fauzymadani/AnonymousWebForum/actions/workflows/php.yml)
 <p align="center">
 <img align="center" src="https://github.com/user-attachments/assets/0c6e5db0-9b28-41f0-9547-d648b70ec3be" alt="Project Image" />
 </p>
