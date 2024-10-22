@@ -1,4 +1,3 @@
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # AnonymousWebForum
 
 <p align="center">
@@ -46,6 +45,17 @@ this repository is licensed under the GPL license.
 
 ## donate
 donate in bitcoin: `bc1q032apdhxqdn67rhaw48qs2mc84lqh4zyy3csh8`
+
+## FAQ
+
+#### is the website safe?
+
+> Of course, the username is generated automatically every session, if you're close the current session, your username is generated again. different session, different username
+
+#### is there any rule in this website?
+
+> yes, there is several rule at `rule.html`
+
 
 ## Repo Activity
 
