@@ -1,0 +1,22 @@
+<?php
+$host = 'localhost'; // Host database Anda
+$db   = 'forum_anon'; // Nama database Anda
+$user = 'root'; // Username database Anda
+$pass = 'halonamasayafauzy'; // Password database Anda
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    PDO::ATTR_EMULATE_PREPARES   => false,
+];
+
+try {
+    // Menggunakan variabel yang telah didefinisikan sebelumnya
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (PDOException $e) {
+    echo "Database error: " . $e->getMessage();
+    exit();
+}
+?>
