@@ -1,3 +1,31 @@
+# ⚠️ Announcement ⚠️
+```
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+For all of people who look at this repository and user who cloned this repository.
+I hereby declare that development for this repository or this forum website is stopped because some reason.
+and there's a big problem and bug that were hard to fix. thank you for all of your enthusiast.
+and again, Thank you very  much.
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEZFSHdhPyF4ApFuH4L0pyCwpIvzwFAmcbjOUACgkQL0pyCwpI
+vzwHTw/+P+RXnMNIrBKTviRwLLv9Y66OvpUblOCeZ5iXH+f9BGMDwn6YuyFdvNS8
+3fjYYhEpfuh6LdxlMR530D3qUxvyqlp3gMZVjghNQHR7kCihr31Yj7tl+GwUxQlP
+PPHN/14wjzCmFFHH1QB+yMTs2i8N2FTryLyJGBaePl84oNC2StW3rG+nYsyfxJwf
+OKXMZ1Re/rDbdnpDQSlKnXdXK7lEpsR8PRpD9OtTnhMdMELQg43zUGzaXdmyHNlz
+WgtyEQGo7fIhtkf+8wPkkDpVDnYpPLbmn08j7UPaiLNHKjOUSnMQie3cg27fC26h
+DILizDLwcCQH7d1vozMw7D4q3AqqCPUrf8KnvOs2QeQLXkuURo/P9+wxkaIj7lmt
+RkIRF1rFEUaTIY4JJQ3+oC2SqMdNdqsFJeptVbkZ7hLuYPBCbqVQGIG+5hpMBOwq
+7+72qhPlv6IqJl9NkgqMMXK24FfG6oYlyg1Sw5jeAZ487R1IV2gPtKWD9eF7Da/5
+1YslWcR/Fn4Y9tG+ONTivYxt0ztnjDxrjbUQsAkyr1dnZqMYVGguqKJZQQ36DZBq
+vnZK+tDIQu379x0kWSQk1o8SkTfCwtTihT3BmSf1ubfHmCgHOKNU7p9naMocwsIv
+eOWczT9tqAj/hinOLjT5BObnD6oFECHk7TxT4bmlggfa+sNri00=
+=ALtm
+-----END PGP SIGNATURE-----
+
+```
+
 # AnonymousWebForum
 [![PHP Composer](https://github.com/fauzymadani/AnonymousWebForum/actions/workflows/php.yml/badge.svg)](https://github.com/fauzymadani/AnonymousWebForum/actions/workflows/php.yml)
 <p align="center">
