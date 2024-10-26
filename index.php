@@ -16,7 +16,7 @@ include 'includes/footer.php';
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $recaptcha_response = $_POST['g-recaptcha-response'];
-    $secret_key = '6LdHR1gqAAAAAEarOconZgR7ncs551Fe_GYZw8HJ';
+    $secret_key = '';
 
     // Verifikasi reCAPTCHA dengan mengirimkan permintaan ke Google
     $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret_key}&response={$recaptcha_response}");
@@ -219,7 +219,7 @@ if (!isset($_SESSION['verified'])) {
 
         <form method="POST" action="index.php" align="center">
             <!-- Field lainnya seperti input CAPTCHA -->
-            <div class="g-recaptcha" data-sitekey="6LdHR1gqAAAAAF4FqKgGQRuAgPKO2FapNLmo4qMq" data-callback="onCaptchaSuccess" align="center"></div>
+            <div class="g-recaptcha" data-sitekey="" data-callback="onCaptchaSuccess" align="center"></div>
             <button type="submit" align="center" class="verify-button">Submit</button>
         </form>
         <div class="boards-container">
